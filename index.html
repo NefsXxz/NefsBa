@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nefs Gtps - Linktree Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="https://i.ibb.co.com/GvrqnS0f/IMG-20250504-WA0042-1.jpg" type="image/jpeg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Animated Background Elements */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(76, 81, 191, 0.1);
+            animation: float 20s infinite linear;
+        }
+        
+        .bg-circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+        
+        .bg-circle:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            right: -50px;
+            animation-delay: 5s;
+            animation-duration: 15s;
+        }
+        
+        .bg-circle:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            bottom: -50px;
+            left: 20%;
+            animation-delay: 10s;
+            animation-duration: 25s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+                opacity: 0.5;
+            }
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 520px;
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                0 8px 32px rgba(31, 38, 135, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        /* Glow Effect */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #4c51bf, #667eea, #4c51bf);
+            z-index: -1;
+            border-radius: 27px;
+            opacity: 0.3;
+            filter: blur(10px);
+        }
+        
+        /* Profil Section - DIUBAH: HAPUS LINK */
+        .profile-container {
+            display: inline-block;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .profile-frame {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: inline-block;
+            border: 4px solid transparent;
+            background: linear-gradient(45deg, #4c51bf, #667eea);
+            padding: 4px;
+            box-shadow: 
+                0 10px 30px rgba(76, 81, 191, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .profile-frame:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 
+                0 15px 40px rgba(76, 81, 191, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.2);
+        }
+        
+        /* HAPUS CSS UNTUK .profile-frame a KARENA TAG <a> SUDAH TIDAK ADA */
+        
+        .profile-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 50%;
+        }
+        
+        /* Online Status */
+        .online-status {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 20px;
+            height: 20px;
+            background: #10b981;
+            border-radius: 50%;
+            border: 3px solid #0f3460;
+            z-index: 2;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+        
+        /* Name & Bio */
+        .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #fff, #a5b4fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(76, 81, 191, 0.2);
+        }
+        
+        .bio {
+            font-size: 1.1rem;
+            margin-bottom: 35px;
+            padding: 0 20px;
+            color: #cbd5e0;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        
+        .highlight {
+            color: #a5b4fc;
+            font-weight: 500;
+        }
+        
+        /* Section Title */
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #a5b4fc;
+            margin: 30px 0 20px 0;
+            text-align: left;
+            padding-left: 15px;
+            border-left: 4px solid #4c51bf;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Links - FIXED: SELURUH AREA BISA DIKLIK */
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 25px;
+        }
+        
+        .link {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            padding: 18px 24px;
+            border-radius: 16px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 18px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            z-index: 2; /* Tambahkan z-index agar link di atas pseudo-element */
+        }
+        
+        /* PERBAIKAN: Hanya pseudo-element yang punya pointer-events: none */
+        .link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.7s ease;
+            pointer-events: none; /* Hanya ini yang perlu pointer-events: none */
+            z-index: -1; /* Taruh di belakang konten */
+        }
+        
+        .link:hover::before {
+            left: 100%;
+        }
+        
+        .link:hover {
+            background: linear-gradient(135deg, rgba(76, 81, 191, 0.2), rgba(102, 126, 234, 0.1));
+            transform: translateY(-5px);
+            border-color: rgba(76, 81, 191, 0.3);
+            box-shadow: 
+                0 10px 25px rgba(0, 0, 0, 0.2),
+                0 0 20px rgba(76, 81, 191, 0.2);
+        }
+        
+        .icon-container {
+            width: 50px;
+            height: 50px;
+            background: rgba(76, 81, 191, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid rgba(76, 81, 191, 0.3);
+        }
+        
+        .icon {
+            font-size: 1.4rem;
+            color: #a5b4fc;
+        }
+        
+        .link-text {
+            flex-grow: 1;
+        }
+        
+        .link-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .link-desc {
+            font-size: 0.85rem;
+            color: #a0aec0;
+            font-weight: 300;
+        }
+        
+        /* Benefit Stream Section */
+        .benefit-section {
+            background: linear-gradient(135deg, rgba(76, 81, 191, 0.1), rgba(15, 52, 96, 0.2));
+            border-radius: 20px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid rgba(76, 81, 191, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .benefit-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #4c51bf, #667eea, #4c51bf);
+        }
+        
+        .benefit-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .benefit-title i {
+            color: #fbbf24;
+            font-size: 1.6rem;
+        }
+        
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .benefit-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 14px;
+            padding: 20px;
+            border-left: 4px solid #4c51bf;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(5px);
+        }
+        
+        .benefit-icon {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #4c51bf;
+        }
+        
+        .benefit-item h4 {
+            font-size: 1.1rem;
+            color: #a5b4fc;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .benefit-item p {
+            font-size: 0.95rem;
+            color: #cbd5e0;
+            line-height: 1.6;
+        }
+        
+        /* Server Live List Section - BARU */
+        .server-list-section {
+            background: linear-gradient(135deg, rgba(45, 212, 191, 0.1), rgba(15, 52, 96, 0.2));
+            border-radius: 20px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid rgba(45, 212, 191, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .server-list-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #0d9488, #2dd4bf, #0d9488);
+        }
+        
+        .server-list-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .server-list-title i {
+            color: #2dd4bf;
+            font-size: 1.6rem;
+        }
+        
+        .server-list {
+            list-style-type: none;
+            counter-reset: server-counter;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .server-list li {
+            counter-increment: server-counter;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 14px;
+            padding: 20px;
+            padding-left: 60px;
+            border-left: 4px solid #0d9488;
+            text-align: left;
+            position: relative;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+        
+        .server-list li:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(5px);
+            border-left-color: #2dd4bf;
+        }
+        
+        .server-list li::before {
+            content: counter(server-counter) ".";
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #0d9488, #2dd4bf);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        .server-name {
+            font-weight: 600;
+            color: #a5b4fc;
+        }
+        
+        .server-duration {
+            color: #2dd4bf;
+            font-weight: 500;
+            float: right;
+            background: rgba(45, 212, 191, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        .footer {
+            font-size: 0.9rem;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a0aec0;
+            position: relative;
+        }
+        
+        .visitor-counter {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(76, 81, 191, 0.2);
+            padding: 8px 18px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-weight: 500;
+            color: #a5b4fc;
+            gap: 8px;
+            border: 1px solid rgba(76, 81, 191, 0.3);
+        }
+        
+        .visitor-counter i {
+            font-size: 1rem;
+        }
+        
+        /* Music Control - Tetap di kanan bawah tanpa scroll */
+        .music-control-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 15px;
+        }
+        
+        .music-toggle {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #4c51bf, #667eea);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 
+                0 10px 30px rgba(76, 81, 191, 0.4),
+                0 0 0 2px rgba(255, 255, 255, 0.1);
+            z-index: 1001;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+            animation: pulse-music 3s infinite;
+        }
+        
+        @keyframes pulse-music {
+            0% { box-shadow: 0 10px 30px rgba(76, 81, 191, 0.4), 0 0 0 2px rgba(255, 255, 255, 0.1); }
+            50% { box-shadow: 0 10px 40px rgba(76, 81, 191, 0.6), 0 0 0 2px rgba(255, 255, 255, 0.2); }
+            100% { box-shadow: 0 10px 30px rgba(76, 81, 191, 0.4), 0 0 0 2px rgba(255, 255, 255, 0.1); }
+        }
+        
+        .music-toggle:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 
+                0 15px 40px rgba(76, 81, 191, 0.6),
+                0 0 0 2px rgba(255, 255, 255, 0.2);
+        }
+        
+        .music-toggle.playing {
+            background: linear-gradient(135deg, #10b981, #34d399);
+        }
+        
+        .music-icon {
+            font-size: 1.6rem;
+            color: white;
+            transition: color 0.3s ease;
+        }
+        
+        /* Music Panel */
+        .music-panel {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            width: 300px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 8px 32px rgba(31, 38, 135, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(20px) scale(0.9);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(20px);
+        }
+        
+        .music-panel.show {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .music-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .music-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .music-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: #a5b4fc;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        
+        .music-btn:hover {
+            background: rgba(76, 81, 191, 0.3);
+            border-color: rgba(76, 81, 191, 0.5);
+            transform: scale(1.1);
+        }
+        
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4c51bf, #667eea);
+            border: none;
+            color: white;
+        }
+        
+        .play-btn:hover {
+            background: linear-gradient(135deg, #667eea, #4c51bf);
+        }
+        
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .volume-slider {
+            flex: 1;
+            height: 6px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4c51bf;
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .song-info {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #a0aec0;
+            text-align: center;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .song-title {
+            font-weight: 600;
+            color: #a5b4fc;
+            margin-bottom: 5px;
+        }
+        
+        /* Notification */
+        .music-notification {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            background: rgba(15, 23, 42, 0.95);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(76, 81, 191, 0.3);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 999;
+            max-width: 250px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .music-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+                margin: 10px;
+                border-radius: 20px;
+                max-width: 95%;
+            }
+            
+            .profile-frame {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .name {
+                font-size: 2rem;
+            }
+            
+            .link {
+                padding: 16px 20px;
+            }
+            
+            .icon-container {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .music-control-container {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .music-toggle {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .music-panel {
+                width: 280px;
+                right: 20px;
+            }
+            
+            .benefit-section, .server-list-section {
+                padding: 20px;
+            }
+            
+            .server-list li {
+                padding: 18px;
+                padding-left: 50px;
+                font-size: 1rem;
+            }
+            
+            .server-list li::before {
+                left: 15px;
+                width: 25px;
+                height: 25px;
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .music-toggle {
+                width: 55px;
+                height: 55px;
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .music-panel {
+                width: 260px;
+                right: 15px;
+            }
+            
+            .name {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.1rem;
+            }
+            
+            .link-title {
+                font-size: 1rem;
+            }
+            
+            .server-list li {
+                padding: 15px;
+                padding-left: 45px;
+                font-size: 0.95rem;
+            }
+            
+            .server-duration {
+                font-size: 0.8rem;
+                padding: 3px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+    </div>
+    
+    <div class="container">
+        <!-- Profil Section - DIUBAH: TANPA LINK -->
+        <div class="profile-container">
+            <div class="profile-frame">
+                <!-- HANYA GAMBAR, TIDAK ADA LINK -->
+                <img src="https://i.ibb.co.com/GvrqnS0f/IMG-20250504-WA0042-1.jpg" alt="Nefs Gtps Profile">
+                <div class="online-status"></div>
+            </div>
+        </div>
+        
+        <h1 class="name">Nefs Gtps</h1>
+        <p class="bio">Selamat datang di Linktree <span class="highlight">Nefs Gtps</span>!<br>👏 <span class="highlight">GTPS Enthusiast</span> & Content Creator 😊</p>
+        
+        <!-- Section: Buy Ba -->
+        <div class="section-title">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Buy Ba</span>
+        </div>
+        <div class="links">
+            <a href="https://wa.me/6285374128738?text=Halo%20bang%20aku%20mau%20beli%20jasa%20ba%20dong%20bisa%20kirimin%20list%20harganya?" 
+               class="link" target="_blank">
+                <div class="icon-container">
+                    <i class="fab fa-whatsapp icon"></i>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">Buy Promote Ba</div>
+                    <div class="link-desc">Jasa promosi BA terpercaya • WhatsApp: 0853-7412-8738</div>
+                </div>
+                <i class="fas fa-external-link-alt" style="color: #a0aec0; font-size: 0.9rem;"></i>
+            </a>
+        </div>
+        
+        <!-- Section: Grup -->
+        <div class="section-title">
+            <i class="fas fa-users"></i>
+            <span>Grup WhatsApp</span>
+        </div>
+        <div class="links">
+            <a href=https://discord.gg/9cnf86KR5Q" class="link" target="_blank">
+                <div class="icon-container">
+                    <i class="fas fa-comments icon"></i>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">Grup Komunitas GTPS</div>
+                    <div class="link-desc">Bergabung dengan komunitas GTPS terbesar</div>
+                </div>
+                <i class="fas fa-external-link-alt" style="color: #a0aec0; font-size: 0.9rem;"></i>
+            </a>
+        </div>
+        
+        <!-- Section: Host -->
+        <div class="section-title">
+            <i class="fas fa-globe"></i>
+            <span>Host</span>
+        </div>
+        <div class="links">
+            <a href="https://gtps.link/tutorial" class="link" target="_blank">
+                <div class="icon-container">
+                    <i class="fas fa-server icon"></i>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">All Host GTPS</div>
+                    <div class="link-desc">Kumpulan semua host GTPS yang tersedia</div>
+                </div>
+                <i class="fas fa-external-link-alt" style="color: #a0aec0; font-size: 0.9rem;"></i>
+            </a>
+        </div>
+        
+        <!-- Section: Aplikasi Host -->
+        <div class="section-title">
+            <i class="fas fa-download"></i>
+            <span>Aplikasi Host</span>
+        </div>
+        <div class="links">
+            <a href="https://sfile.co/7SNc2kJhLyj" class="link" target="_blank">
+                <div class="icon-container">
+                    <i class="fas fa-bolt icon"></i>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">Powertunnel Download</div>
+                    <div class="link-desc">Aplikasi untuk bypass dengan kecepatan maksimal</div>
+                </div>
+                <i class="fas fa-external-link-alt" style="color: #a0aec0; font-size: 0.9rem;"></i>
+            </a>
+            
+            <a href="https://sfile.co/4xXabY4QEEP" class="link" target="_blank">
+                <div class="icon-container">
+                    <i class="fas fa-cloud icon"></i>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">Virtual Host Download</div>
+                    <div class="link-desc">Aplikasi host virtual untuk pengalaman terbaik</div>
+                </div>
+                <i class="fas fa-external-link-alt" style="color: #a0aec0; font-size: 0.9rem;"></i>
+            </a>
+        </div>
+        
+        <!-- Benefit Stream Section -->
+        <div class="benefit-section">
+            <div class="benefit-title">
+                <i class="fas fa-crown"></i>
+                BENEFIT STREAM
+            </div>
+            
+            <div class="benefit-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎥</div>
+                    <h4>Live yang Asik & Berkelas</h4>
+                    <p>Live sangat friendly serta fokus pada interaksi dengan penonton, agar live semakin ramai dan asik! Kami memberikan pengalaman streaming yang menyenangkan dan profesional dengan kualitas terbaik.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">👑</div>
+                    <h4>Streamer Mantan Owner GTPS</h4>
+                    <p>Pengalaman sebagai mantan Owner GTPS membantu memahami dan mengerti cara mengelola server dengan baik. Hal ini mengurangi risiko tindakan clone / penipuan dalam server karena pemahaman mendalam tentang sistem GTPS.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Server Live List Section - BARU -->
+        <div class="server-list-section">
+            <div class="server-list-title">
+                <i class="fas fa-gamepad"></i>
+                List Server Live
+            </div>
+            
+            <ol class="server-list">
+                <li>
+                    <span class="server-name">GROWCASTLE</span>
+                    <span class="server-duration">3 jam</span>
+                </li>
+            </ol>
+            
+            <p style="margin-top: 20px; color: #cbd5e0; font-size: 0.95rem; text-align: center;">
+                <i class="fas fa-info-circle" style="color: #2dd4bf; margin-right: 8px;"></i>
+                Jadwal live bisa berubah, cek update di grup WhatsApp
+            </p>
+        </div>
+        
+        <div class="footer">
+            © 2025 Nefs Gtps • Premium Linktree Design<br>
+            <span class="visitor-counter">
+                <i class="fas fa-eye"></i>
+                <span id="visitorCount">0</span> Pengunjung
+            </span>
+        </div>
+    </div>
+    
+    <!-- Music Control Container (FIXED POSITION - TANPA SCROLL) -->
+    <div class="music-control-container">
+        <!-- Music Notification -->
+        <div class="music-notification" id="musicNotification">
+            🎵 Musik otomatis diputar: <strong>Kingdom Dance - Tangled</strong>
+        </div>
+        
+        <!-- Music Panel -->
+        <div class="music-panel" id="musicPanel">
+            <div class="music-title">
+                <i class="fas fa-music"></i>
+                Kontrol Musik
+            </div>
+            
+            <div class="music-controls">
+                <button class="music-btn" id="prevBtn" disabled>
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button class="music-btn play-btn" id="playBtn">
+                    <i class="fas fa-play" id="playIcon"></i>
+                </button>
+                <button class="music-btn" id="nextBtn" disabled>
+                    <i class="fas fa-step-forward"></i>
+                </button>
+            </div>
+            
+            <div class="volume-container">
+                <i class="fas fa-volume-down" style="color: #a5b4fc;"></i>
+                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="0.7">
+                <i class="fas fa-volume-up" style="color: #a5b4fc;"></i>
+            </div>
+            
+            <div class="song-info">
+                <div class="song-title" id="songTitle">Kingdom Dance - Tangled</div>
+                <div id="songArtist">Alan Menken</div>
+            </div>
+        </div>
+        
+        <!-- Music Toggle Button -->
+        <button class="music-toggle" id="musicToggle">
+            <i class="fas fa-music music-icon" id="musicIcon"></i>
+        </button>
+    </div>
+    
+    <!-- Audio Element -->
+    <audio id="backgroundAudio" loop preload="auto">
+        <source src="https://cdn.discordapp.com/attachments/1217392524621119490/1408374654493523979/Kingdom_Dance_From_Tangled_Score_-_Alan_Menken.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+    
+    <script>
+        // Elements
+        const audio = document.getElementById('backgroundAudio');
+        const musicToggle = document.getElementById('musicToggle');
+        const musicPanel = document.getElementById('musicPanel');
+        const playBtn = document.getElementById('playBtn');
+        const playIcon = document.getElementById('playIcon');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const songTitle = document.getElementById('songTitle');
+        const musicIcon = document.getElementById('musicIcon');
+        const visitorCount = document.getElementById('visitorCount');
+        const musicNotification = document.getElementById('musicNotification');
+        
+        // State
+        let isPlaying = false;
+        let isPanelOpen = false;
+        let audioStarted = false;
+        
+        // Visitor Counter
+        let visitors = localStorage.getItem('nefsVisitors') || 0;
+        visitors = parseInt(visitors) + 1;
+        localStorage.setItem('nefsVisitors', visitors);
+        visitorCount.textContent = visitors;
+        
+        // Set initial volume
+        audio.volume = volumeSlider.value;
+        
+        // Function untuk memulai audio dengan interaksi pengguna
+        function startAudioWithInteraction() {
+            if (!audioStarted) {
+                // Coba play audio
+                const playPromise = audio.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Audio berhasil diputar
+                        isPlaying = true;
+                        playIcon.className = 'fas fa-pause';
+                        musicToggle.classList.add('playing');
+                        musicIcon.className = 'fas fa-pause';
+                        audioStarted = true;
+                        
+                        // Tampilkan notifikasi
+                        showNotification("🎵 Musik otomatis diputar");
+                        
+                        // Sembunyikan notifikasi setelah 4 detik
+                        setTimeout(() => {
+                            hideNotification();
+                        }, 4000);
+                        
+                        console.log("Audio started successfully");
+                    }).catch(error => {
+                        // Audio gagal diputar, tunggu interaksi manual
+                        console.log("Autoplay blocked, waiting for manual interaction");
+                        audioStarted = false;
+                        
+                        // Tampilkan notifikasi untuk interaksi manual
+                        showNotification("🔈 Klik tombol musik untuk memutar");
+                        
+                        // Sembunyikan notifikasi setelah 5 detik
+                        setTimeout(() => {
+                            hideNotification();
+                        }, 5000);
+                    });
+                }
+            }
+        }
+        
+        // Function untuk menampilkan notifikasi
+        function showNotification(message) {
+            if (musicNotification) {
+                musicNotification.innerHTML = message;
+                musicNotification.classList.add('show');
+            }
+        }
+        
+        // Function untuk menyembunyikan notifikasi
+        function hideNotification() {
+            if (musicNotification) {
+                musicNotification.classList.remove('show');
+            }
+        }
+        
+        // Auto-start audio saat halaman dimuat (setelah delay kecil)
+        // Memberikan waktu untuk halaman dimuat sepenuhnya
+        window.addEventListener('load', function() {
+            // Tunggu 1 detik sebelum mencoba memutar audio
+            setTimeout(() => {
+                startAudioWithInteraction();
+            }, 1000);
+        });
+        
+        // Juga coba mulai audio saat ada interaksi pertama
+        document.addEventListener('click', function initAudio() {
+            if (!audioStarted) {
+                startAudioWithInteraction();
+            }
+        }, { once: true });
+        
+        // Toggle music panel
+        musicToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            isPanelOpen = !isPanelOpen;
+            
+            if (isPanelOpen) {
+                musicPanel.classList.add('show');
+            } else {
+                musicPanel.classList.remove('show');
+            }
+        });
+        
+        // Play/Pause
+        playBtn.addEventListener('click', function() {
+            if (isPlaying) {
+                audio.pause();
+                playIcon.className = 'fas fa-play';
+                musicToggle.classList.remove('playing');
+                musicIcon.className = 'fas fa-music';
+            } else {
+                audio.play().then(() => {
+                    playIcon.className = 'fas fa-pause';
+                    musicToggle.classList.add('playing');
+                    musicIcon.className = 'fas fa-pause';
+                }).catch(error => {
+                    console.log("Error playing audio:", error);
+                    showNotification("❌ Gagal memutar audio. Coba klik lagi.");
+                    setTimeout(hideNotification, 3000);
+                });
+            }
+            isPlaying = !isPlaying;
+            audioStarted = true;
+        });
+        
+        // Volume control
+        volumeSlider.addEventListener('input', function() {
+            audio.volume = this.value;
+            
+            // Update icon based on volume
+            const volumeIcons = document.querySelectorAll('.fa-volume-down, .fa-volume-up');
+            if (this.value == 0) {
+                volumeIcons.forEach(icon => icon.className = 'fas fa-volume-mute');
+                volumeIcons.forEach(icon => icon.style.color = '#a0aec0');
+            } else if (this.value < 0.5) {
+                volumeIcons.forEach(icon => icon.className = 'fas fa-volume-down');
+                volumeIcons.forEach(icon => icon.style.color = '#a5b4fc');
+            } else {
+                volumeIcons.forEach(icon => icon.className = 'fas fa-volume-up');
+                volumeIcons.forEach(icon => icon.style.color = '#a5b4fc');
+            }
+        });
+        
+        // Update song info when song changes
+        audio.addEventListener('play', function() {
+            songTitle.textContent = "Kingdom Dance - Tangled";
+        });
+        
+        // Auto play again when current ends (loop)
+        audio.addEventListener('ended', function() {
+            audio.currentTime = 0;
+            audio.play();
+        });
+        
+        // Close music panel when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!musicToggle.contains(event.target) && !musicPanel.contains(event.target) && isPanelOpen) {
+                musicPanel.classList.remove('show');
+                isPanelOpen = false;
+            }
+        });
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(event) {
+            // Spacebar to play/pause
+            if (event.code === 'Space' && !event.target.matches('input, textarea')) {
+                event.preventDefault();
+                playBtn.click();
+            }
+            
+            // M to toggle music panel
+            if (event.code === 'KeyM' && !event.target.matches('input, textarea')) {
+                event.preventDefault();
+                musicToggle.click();
+            }
+            
+            // Arrow up/down for volume
+            if (event.code === 'ArrowUp' && !event.target.matches('input, textarea')) {
+                event.preventDefault();
+                volumeSlider.value = Math.min(1, parseFloat(volumeSlider.value) + 0.1);
+                volumeSlider.dispatchEvent(new Event('input'));
+            }
+            
+            if (event.code === 'ArrowDown' && !event.target.matches('input, textarea')) {
+                event.preventDefault();
+                volumeSlider.value = Math.max(0, parseFloat(volumeSlider.value) - 0.1);
+                volumeSlider.dispatchEvent(new Event('input'));
+            }
+        });
+        
+        // Prevent panel close when clicking inside panel
+        musicPanel.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+        
+        // Set initial song info
+        songTitle.textContent = "Kingdom Dance - Tangled";
+        
+        // Audio error handling
+        audio.addEventListener('error', function(e) {
+            console.error("Audio error:", e);
+            showNotification("❌ Error memuat audio. Coba refresh halaman.");
+        });
+        
+        // Audio canplay event
+        audio.addEventListener('canplay', function() {
+            console.log("Audio ready to play");
+        });
+        
+        // Debug: Test jika link bisa diklik
+        console.log("Semua link seharusnya bisa diklik sekarang!");
+    </script>
+</body>
+</html>
