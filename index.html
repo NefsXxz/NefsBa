@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="https://i.ibb.co.com/GvrqnS0f/IMG-20250504-WA0042-1.jpg" type="image/jpeg">
     <style>
+        /* Semua style tetap sama seperti sebelumnya */
         * {
             margin: 0;
             padding: 0;
@@ -119,7 +120,7 @@
             filter: blur(10px);
         }
         
-        /* Profil Section - DIUBAH: HAPUS LINK */
+        /* Profil Section */
         .profile-container {
             display: inline-block;
             margin-bottom: 30px;
@@ -148,8 +149,6 @@
                 0 15px 40px rgba(76, 81, 191, 0.6),
                 0 0 0 1px rgba(255, 255, 255, 0.2);
         }
-        
-        /* HAPUS CSS UNTUK .profile-frame a KARENA TAG <a> SUDAH TIDAK ADA */
         
         .profile-frame img {
             width: 100%;
@@ -222,7 +221,7 @@
             letter-spacing: 1px;
         }
         
-        /* Links - FIXED: SELURUH AREA BISA DIKLIK */
+        /* Links */
         .links {
             display: flex;
             flex-direction: column;
@@ -249,10 +248,9 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            z-index: 2; /* Tambahkan z-index agar link di atas pseudo-element */
+            z-index: 2;
         }
         
-        /* PERBAIKAN: Hanya pseudo-element yang punya pointer-events: none */
         .link::before {
             content: '';
             position: absolute;
@@ -262,8 +260,8 @@
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             transition: left 0.7s ease;
-            pointer-events: none; /* Hanya ini yang perlu pointer-events: none */
-            z-index: -1; /* Taruh di belakang konten */
+            pointer-events: none;
+            z-index: -1;
         }
         
         .link:hover::before {
@@ -388,7 +386,7 @@
             line-height: 1.6;
         }
         
-        /* Server Live List Section - BARU */
+        /* Server Live List Section */
         .server-list-section {
             background: linear-gradient(135deg, rgba(45, 212, 191, 0.1), rgba(15, 52, 96, 0.2));
             border-radius: 20px;
@@ -512,7 +510,7 @@
             font-size: 1rem;
         }
         
-        /* Music Control - Tetap di kanan bawah tanpa scroll */
+        /* Music Control */
         .music-control-container {
             position: fixed;
             bottom: 30px;
@@ -818,10 +816,9 @@
     </div>
     
     <div class="container">
-        <!-- Profil Section - DIUBAH: TANPA LINK -->
+        <!-- Profil Section -->
         <div class="profile-container">
             <div class="profile-frame">
-                <!-- HANYA GAMBAR, TIDAK ADA LINK -->
                 <img src="https://i.ibb.co.com/GvrqnS0f/IMG-20250504-WA0042-1.jpg" alt="Nefs Gtps Profile">
                 <div class="online-status"></div>
             </div>
@@ -836,8 +833,7 @@
             <span>Buy Ba</span>
         </div>
         <div class="links">
-            <a href="https://wa.me/6285374128738?text=Halo%20bang%20aku%20mau%20beli%20jasa%20ba%20dong%20bisa%20kirimin%20list%20harganya?" 
-               class="link" target="_blank">
+            <a href="https://wa.me/6285374128738?text=Halo%20bang%20aku%20mau%20beli%20jasa%20ba%20dong%20bisa%20kirimin%20list%20harganya?" class="link" target="_blank">
                 <div class="icon-container">
                     <i class="fab fa-whatsapp icon"></i>
                 </div>
@@ -849,13 +845,14 @@
             </a>
         </div>
         
-        <!-- Section: Grup -->
+        <!-- Section: Grup WhatsApp -->
         <div class="section-title">
             <i class="fas fa-users"></i>
             <span>Grup WhatsApp</span>
         </div>
         <div class="links">
-            <a href=https://discord.gg/9cnf86KR5Q" class="link" target="_blank">
+            <!-- Link sudah diperbaiki dengan tanda kutip -->
+            <a href="https://discord.gg/9cnf86KR5Q" class="link" target="_blank">
                 <div class="icon-container">
                     <i class="fas fa-comments icon"></i>
                 </div>
@@ -880,6 +877,24 @@
                 <div class="link-text">
                     <div class="link-title">All Host GTPS</div>
                     <div class="link-desc">Kumpulan semua host GTPS yang tersedia</div>
+                </div>
+                <i class="fas fa-external-link-alt" style="color: #a0aec0; font-size: 0.9rem;"></i>
+            </a>
+        </div>
+        
+        <!-- Section: Aplikasi Premium (BARU - di bawah Host) -->
+        <div class="section-title">
+            <i class="fas fa-store"></i>
+            <span>Aplikasi Premium</span>
+        </div>
+        <div class="links">
+            <a href="https://nefs-storee.vercel.app/" class="link" target="_blank">
+                <div class="icon-container">
+                    <i class="fas fa-crown icon"></i>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">Nefs Store - Aplikasi Premium</div>
+                    <div class="link-desc">Koleksi aplikasi premium dan tools eksklusif</div>
                 </div>
                 <i class="fas fa-external-link-alt" style="color: #a0aec0; font-size: 0.9rem;"></i>
             </a>
@@ -936,7 +951,7 @@
             </div>
         </div>
         
-        <!-- Server Live List Section - BARU -->
+        <!-- Server Live List Section -->
         <div class="server-list-section">
             <div class="server-list-title">
                 <i class="fas fa-gamepad"></i>
@@ -965,7 +980,7 @@
         </div>
     </div>
     
-    <!-- Music Control Container (FIXED POSITION - TANPA SCROLL) -->
+    <!-- Music Control Container (tetap sama) -->
     <div class="music-control-container">
         <!-- Music Notification -->
         <div class="music-notification" id="musicNotification">
@@ -1016,6 +1031,7 @@
     </audio>
     
     <script>
+        // Script tetap sama seperti sebelumnya
         // Elements
         const audio = document.getElementById('backgroundAudio');
         const musicToggle = document.getElementById('musicToggle');
@@ -1045,36 +1061,29 @@
         // Function untuk memulai audio dengan interaksi pengguna
         function startAudioWithInteraction() {
             if (!audioStarted) {
-                // Coba play audio
                 const playPromise = audio.play();
                 
                 if (playPromise !== undefined) {
                     playPromise.then(() => {
-                        // Audio berhasil diputar
                         isPlaying = true;
                         playIcon.className = 'fas fa-pause';
                         musicToggle.classList.add('playing');
                         musicIcon.className = 'fas fa-pause';
                         audioStarted = true;
                         
-                        // Tampilkan notifikasi
                         showNotification("🎵 Musik otomatis diputar");
                         
-                        // Sembunyikan notifikasi setelah 4 detik
                         setTimeout(() => {
                             hideNotification();
                         }, 4000);
                         
                         console.log("Audio started successfully");
                     }).catch(error => {
-                        // Audio gagal diputar, tunggu interaksi manual
                         console.log("Autoplay blocked, waiting for manual interaction");
                         audioStarted = false;
                         
-                        // Tampilkan notifikasi untuk interaksi manual
                         showNotification("🔈 Klik tombol musik untuk memutar");
                         
-                        // Sembunyikan notifikasi setelah 5 detik
                         setTimeout(() => {
                             hideNotification();
                         }, 5000);
@@ -1083,7 +1092,6 @@
             }
         }
         
-        // Function untuk menampilkan notifikasi
         function showNotification(message) {
             if (musicNotification) {
                 musicNotification.innerHTML = message;
@@ -1091,30 +1099,24 @@
             }
         }
         
-        // Function untuk menyembunyikan notifikasi
         function hideNotification() {
             if (musicNotification) {
                 musicNotification.classList.remove('show');
             }
         }
         
-        // Auto-start audio saat halaman dimuat (setelah delay kecil)
-        // Memberikan waktu untuk halaman dimuat sepenuhnya
         window.addEventListener('load', function() {
-            // Tunggu 1 detik sebelum mencoba memutar audio
             setTimeout(() => {
                 startAudioWithInteraction();
             }, 1000);
         });
         
-        // Juga coba mulai audio saat ada interaksi pertama
         document.addEventListener('click', function initAudio() {
             if (!audioStarted) {
                 startAudioWithInteraction();
             }
         }, { once: true });
         
-        // Toggle music panel
         musicToggle.addEventListener('click', function(e) {
             e.stopPropagation();
             isPanelOpen = !isPanelOpen;
@@ -1126,7 +1128,6 @@
             }
         });
         
-        // Play/Pause
         playBtn.addEventListener('click', function() {
             if (isPlaying) {
                 audio.pause();
@@ -1148,11 +1149,9 @@
             audioStarted = true;
         });
         
-        // Volume control
         volumeSlider.addEventListener('input', function() {
             audio.volume = this.value;
             
-            // Update icon based on volume
             const volumeIcons = document.querySelectorAll('.fa-volume-down, .fa-volume-up');
             if (this.value == 0) {
                 volumeIcons.forEach(icon => icon.className = 'fas fa-volume-mute');
@@ -1166,18 +1165,15 @@
             }
         });
         
-        // Update song info when song changes
         audio.addEventListener('play', function() {
             songTitle.textContent = "Kingdom Dance - Tangled";
         });
         
-        // Auto play again when current ends (loop)
         audio.addEventListener('ended', function() {
             audio.currentTime = 0;
             audio.play();
         });
         
-        // Close music panel when clicking outside
         document.addEventListener('click', function(event) {
             if (!musicToggle.contains(event.target) && !musicPanel.contains(event.target) && isPanelOpen) {
                 musicPanel.classList.remove('show');
@@ -1185,21 +1181,17 @@
             }
         });
         
-        // Keyboard shortcuts
         document.addEventListener('keydown', function(event) {
-            // Spacebar to play/pause
             if (event.code === 'Space' && !event.target.matches('input, textarea')) {
                 event.preventDefault();
                 playBtn.click();
             }
             
-            // M to toggle music panel
             if (event.code === 'KeyM' && !event.target.matches('input, textarea')) {
                 event.preventDefault();
                 musicToggle.click();
             }
             
-            // Arrow up/down for volume
             if (event.code === 'ArrowUp' && !event.target.matches('input, textarea')) {
                 event.preventDefault();
                 volumeSlider.value = Math.min(1, parseFloat(volumeSlider.value) + 0.1);
@@ -1213,27 +1205,20 @@
             }
         });
         
-        // Prevent panel close when clicking inside panel
         musicPanel.addEventListener('click', function(e) {
             e.stopPropagation();
         });
         
-        // Set initial song info
         songTitle.textContent = "Kingdom Dance - Tangled";
         
-        // Audio error handling
         audio.addEventListener('error', function(e) {
             console.error("Audio error:", e);
             showNotification("❌ Error memuat audio. Coba refresh halaman.");
         });
         
-        // Audio canplay event
         audio.addEventListener('canplay', function() {
             console.log("Audio ready to play");
         });
-        
-        // Debug: Test jika link bisa diklik
-        console.log("Semua link seharusnya bisa diklik sekarang!");
     </script>
 </body>
 </html>
