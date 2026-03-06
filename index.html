@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="https://i.ibb.co.com/GvrqnS0f/IMG-20250504-WA0042-1.jpg" type="image/jpeg">
     <style>
-        /* Semua style tetap sama seperti sebelumnya */
+        /* Semua style tetap sama */
         * {
             margin: 0;
             padding: 0;
@@ -825,7 +825,8 @@
         </div>
         
         <h1 class="name">Nefs Gtps</h1>
-        <p class="bio">Selamat datang di Linktree <span class="highlight">Nefs Gtps</span>!<br>👏 <span class="highlight">GTPS Enthusiast</span> & Content Creator 😊</p>
+        <!-- BIO DENGAN TAMBAHAN HARGA JASA 10K/JAM -->
+        <p class="bio">Selamat datang di Linktree <span class="highlight">Nefs Gtps</span>!<br>👏 <span class="highlight">GTPS Enthusiast</span> & Content Creator 😊<br>💰 <span class="highlight">Jasa BA 10k/jam</span></p>
         
         <!-- Section: Buy Ba -->
         <div class="section-title">
@@ -851,7 +852,6 @@
             <span>Grup WhatsApp</span>
         </div>
         <div class="links">
-            <!-- Link sudah diperbaiki dengan tanda kutip -->
             <a href="https://discord.gg/9cnf86KR5Q" class="link" target="_blank">
                 <div class="icon-container">
                     <i class="fas fa-comments icon"></i>
@@ -882,7 +882,7 @@
             </a>
         </div>
         
-        <!-- Section: Aplikasi Premium (BARU - di bawah Host) -->
+        <!-- Section: Aplikasi Premium (di bawah Host) -->
         <div class="section-title">
             <i class="fas fa-store"></i>
             <span>Aplikasi Premium</span>
@@ -980,14 +980,12 @@
         </div>
     </div>
     
-    <!-- Music Control Container (tetap sama) -->
+    <!-- Music Control Container -->
     <div class="music-control-container">
-        <!-- Music Notification -->
         <div class="music-notification" id="musicNotification">
             🎵 Musik otomatis diputar: <strong>Kingdom Dance - Tangled</strong>
         </div>
         
-        <!-- Music Panel -->
         <div class="music-panel" id="musicPanel">
             <div class="music-title">
                 <i class="fas fa-music"></i>
@@ -1018,21 +1016,18 @@
             </div>
         </div>
         
-        <!-- Music Toggle Button -->
         <button class="music-toggle" id="musicToggle">
             <i class="fas fa-music music-icon" id="musicIcon"></i>
         </button>
     </div>
     
-    <!-- Audio Element -->
     <audio id="backgroundAudio" loop preload="auto">
         <source src="https://cdn.discordapp.com/attachments/1217392524621119490/1408374654493523979/Kingdom_Dance_From_Tangled_Score_-_Alan_Menken.mp3" type="audio/mpeg">
         Browser Anda tidak mendukung elemen audio.
     </audio>
     
     <script>
-        // Script tetap sama seperti sebelumnya
-        // Elements
+        // Script tetap sama
         const audio = document.getElementById('backgroundAudio');
         const musicToggle = document.getElementById('musicToggle');
         const musicPanel = document.getElementById('musicPanel');
@@ -1044,25 +1039,20 @@
         const visitorCount = document.getElementById('visitorCount');
         const musicNotification = document.getElementById('musicNotification');
         
-        // State
         let isPlaying = false;
         let isPanelOpen = false;
         let audioStarted = false;
         
-        // Visitor Counter
         let visitors = localStorage.getItem('nefsVisitors') || 0;
         visitors = parseInt(visitors) + 1;
         localStorage.setItem('nefsVisitors', visitors);
         visitorCount.textContent = visitors;
         
-        // Set initial volume
         audio.volume = volumeSlider.value;
         
-        // Function untuk memulai audio dengan interaksi pengguna
         function startAudioWithInteraction() {
             if (!audioStarted) {
                 const playPromise = audio.play();
-                
                 if (playPromise !== undefined) {
                     playPromise.then(() => {
                         isPlaying = true;
@@ -1070,23 +1060,12 @@
                         musicToggle.classList.add('playing');
                         musicIcon.className = 'fas fa-pause';
                         audioStarted = true;
-                        
                         showNotification("🎵 Musik otomatis diputar");
-                        
-                        setTimeout(() => {
-                            hideNotification();
-                        }, 4000);
-                        
-                        console.log("Audio started successfully");
+                        setTimeout(hideNotification, 4000);
                     }).catch(error => {
-                        console.log("Autoplay blocked, waiting for manual interaction");
                         audioStarted = false;
-                        
                         showNotification("🔈 Klik tombol musik untuk memutar");
-                        
-                        setTimeout(() => {
-                            hideNotification();
-                        }, 5000);
+                        setTimeout(hideNotification, 5000);
                     });
                 }
             }
@@ -1106,26 +1085,18 @@
         }
         
         window.addEventListener('load', function() {
-            setTimeout(() => {
-                startAudioWithInteraction();
-            }, 1000);
+            setTimeout(startAudioWithInteraction, 1000);
         });
         
         document.addEventListener('click', function initAudio() {
-            if (!audioStarted) {
-                startAudioWithInteraction();
-            }
+            if (!audioStarted) startAudioWithInteraction();
         }, { once: true });
         
         musicToggle.addEventListener('click', function(e) {
             e.stopPropagation();
             isPanelOpen = !isPanelOpen;
-            
-            if (isPanelOpen) {
-                musicPanel.classList.add('show');
-            } else {
-                musicPanel.classList.remove('show');
-            }
+            if (isPanelOpen) musicPanel.classList.add('show');
+            else musicPanel.classList.remove('show');
         });
         
         playBtn.addEventListener('click', function() {
@@ -1140,8 +1111,7 @@
                     musicToggle.classList.add('playing');
                     musicIcon.className = 'fas fa-pause';
                 }).catch(error => {
-                    console.log("Error playing audio:", error);
-                    showNotification("❌ Gagal memutar audio. Coba klik lagi.");
+                    showNotification("❌ Gagal memutar audio");
                     setTimeout(hideNotification, 3000);
                 });
             }
@@ -1151,7 +1121,6 @@
         
         volumeSlider.addEventListener('input', function() {
             audio.volume = this.value;
-            
             const volumeIcons = document.querySelectorAll('.fa-volume-down, .fa-volume-up');
             if (this.value == 0) {
                 volumeIcons.forEach(icon => icon.className = 'fas fa-volume-mute');
@@ -1186,18 +1155,15 @@
                 event.preventDefault();
                 playBtn.click();
             }
-            
             if (event.code === 'KeyM' && !event.target.matches('input, textarea')) {
                 event.preventDefault();
                 musicToggle.click();
             }
-            
             if (event.code === 'ArrowUp' && !event.target.matches('input, textarea')) {
                 event.preventDefault();
                 volumeSlider.value = Math.min(1, parseFloat(volumeSlider.value) + 0.1);
                 volumeSlider.dispatchEvent(new Event('input'));
             }
-            
             if (event.code === 'ArrowDown' && !event.target.matches('input, textarea')) {
                 event.preventDefault();
                 volumeSlider.value = Math.max(0, parseFloat(volumeSlider.value) - 0.1);
@@ -1205,19 +1171,12 @@
             }
         });
         
-        musicPanel.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-        
+        musicPanel.addEventListener('click', e => e.stopPropagation());
         songTitle.textContent = "Kingdom Dance - Tangled";
         
         audio.addEventListener('error', function(e) {
             console.error("Audio error:", e);
-            showNotification("❌ Error memuat audio. Coba refresh halaman.");
-        });
-        
-        audio.addEventListener('canplay', function() {
-            console.log("Audio ready to play");
+            showNotification("❌ Error muat audio. Refresh?");
         });
     </script>
 </body>
