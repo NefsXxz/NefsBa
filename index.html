@@ -1,1183 +1,305 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nefs Gtps - Linktree Premium</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="https://i.ibb.co.com/GvrqnS0f/IMG-20250504-WA0042-1.jpg" type="image/jpeg">
-    <style>
-        /* Semua style tetap sama */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            color: #fff;
-            min-height: 100vh;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
-            position: relative;
-        }
-        
-        /* Animated Background Elements */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-        
-        .bg-circle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(76, 81, 191, 0.1);
-            animation: float 20s infinite linear;
-        }
-        
-        .bg-circle:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            top: -100px;
-            left: -100px;
-            animation-delay: 0s;
-        }
-        
-        .bg-circle:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            top: 50%;
-            right: -50px;
-            animation-delay: 5s;
-            animation-duration: 15s;
-        }
-        
-        .bg-circle:nth-child(3) {
-            width: 150px;
-            height: 150px;
-            bottom: -50px;
-            left: 20%;
-            animation-delay: 10s;
-            animation-duration: 25s;
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0.5;
-            }
-            50% {
-                transform: translateY(-20px) rotate(180deg);
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(0) rotate(360deg);
-                opacity: 0.5;
-            }
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 520px;
-            text-align: center;
-            padding: 40px 30px;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.3),
-                0 8px 32px rgba(31, 38, 135, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-        
-        /* Glow Effect */
-        .container::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #4c51bf, #667eea, #4c51bf);
-            z-index: -1;
-            border-radius: 27px;
-            opacity: 0.3;
-            filter: blur(10px);
-        }
-        
-        /* Profil Section */
-        .profile-container {
-            display: inline-block;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        
-        .profile-frame {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            overflow: hidden;
-            display: inline-block;
-            border: 4px solid transparent;
-            background: linear-gradient(45deg, #4c51bf, #667eea);
-            padding: 4px;
-            box-shadow: 
-                0 10px 30px rgba(76, 81, 191, 0.4),
-                0 0 0 1px rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
-            position: relative;
-        }
-        
-        .profile-frame:hover {
-            transform: scale(1.05) rotate(5deg);
-            box-shadow: 
-                0 15px 40px rgba(76, 81, 191, 0.6),
-                0 0 0 1px rgba(255, 255, 255, 0.2);
-        }
-        
-        .profile-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            border-radius: 50%;
-        }
-        
-        /* Online Status */
-        .online-status {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            width: 20px;
-            height: 20px;
-            background: #10b981;
-            border-radius: 50%;
-            border: 3px solid #0f3460;
-            z-index: 2;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-        }
-        
-        /* Name & Bio */
-        .name {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #fff, #a5b4fc);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.5px;
-            text-shadow: 0 2px 10px rgba(76, 81, 191, 0.2);
-        }
-        
-        .bio {
-            font-size: 1.1rem;
-            margin-bottom: 35px;
-            padding: 0 20px;
-            color: #cbd5e0;
-            line-height: 1.6;
-            font-weight: 300;
-        }
-        
-        .highlight {
-            color: #a5b4fc;
-            font-weight: 500;
-        }
-        
-        /* Section Title */
-        .section-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #a5b4fc;
-            margin: 30px 0 20px 0;
-            text-align: left;
-            padding-left: 15px;
-            border-left: 4px solid #4c51bf;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        /* Links */
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-bottom: 25px;
-        }
-        
-        .link {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-            padding: 18px 24px;
-            border-radius: 16px;
-            text-decoration: none;
-            color: #fff;
-            font-weight: 500;
-            font-size: 1.05rem;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 18px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: left;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            z-index: 2;
-        }
-        
-        .link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.7s ease;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .link:hover::before {
-            left: 100%;
-        }
-        
-        .link:hover {
-            background: linear-gradient(135deg, rgba(76, 81, 191, 0.2), rgba(102, 126, 234, 0.1));
-            transform: translateY(-5px);
-            border-color: rgba(76, 81, 191, 0.3);
-            box-shadow: 
-                0 10px 25px rgba(0, 0, 0, 0.2),
-                0 0 20px rgba(76, 81, 191, 0.2);
-        }
-        
-        .icon-container {
-            width: 50px;
-            height: 50px;
-            background: rgba(76, 81, 191, 0.2);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            border: 1px solid rgba(76, 81, 191, 0.3);
-        }
-        
-        .icon {
-            font-size: 1.4rem;
-            color: #a5b4fc;
-        }
-        
-        .link-text {
-            flex-grow: 1;
-        }
-        
-        .link-title {
-            font-weight: 600;
-            margin-bottom: 5px;
-            font-size: 1.1rem;
-        }
-        
-        .link-desc {
-            font-size: 0.85rem;
-            color: #a0aec0;
-            font-weight: 300;
-        }
-        
-        /* Benefit Stream Section */
-        .benefit-section {
-            background: linear-gradient(135deg, rgba(76, 81, 191, 0.1), rgba(15, 52, 96, 0.2));
-            border-radius: 20px;
-            padding: 25px;
-            margin: 30px 0;
-            border: 1px solid rgba(76, 81, 191, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .benefit-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #4c51bf, #667eea, #4c51bf);
-        }
-        
-        .benefit-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .benefit-title i {
-            color: #fbbf24;
-            font-size: 1.6rem;
-        }
-        
-        .benefit-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-        
-        .benefit-item {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 14px;
-            padding: 20px;
-            border-left: 4px solid #4c51bf;
-            text-align: left;
-            transition: all 0.3s ease;
-        }
-        
-        .benefit-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateX(5px);
-        }
-        
-        .benefit-icon {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: #4c51bf;
-        }
-        
-        .benefit-item h4 {
-            font-size: 1.1rem;
-            color: #a5b4fc;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .benefit-item p {
-            font-size: 0.95rem;
-            color: #cbd5e0;
-            line-height: 1.6;
-        }
-        
-        /* Server Live List Section */
-        .server-list-section {
-            background: linear-gradient(135deg, rgba(45, 212, 191, 0.1), rgba(15, 52, 96, 0.2));
-            border-radius: 20px;
-            padding: 25px;
-            margin: 30px 0;
-            border: 1px solid rgba(45, 212, 191, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .server-list-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #0d9488, #2dd4bf, #0d9488);
-        }
-        
-        .server-list-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .server-list-title i {
-            color: #2dd4bf;
-            font-size: 1.6rem;
-        }
-        
-        .server-list {
-            list-style-type: none;
-            counter-reset: server-counter;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-        
-        .server-list li {
-            counter-increment: server-counter;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 14px;
-            padding: 20px;
-            padding-left: 60px;
-            border-left: 4px solid #0d9488;
-            text-align: left;
-            position: relative;
-            transition: all 0.3s ease;
-            font-size: 1.05rem;
-        }
-        
-        .server-list li:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateX(5px);
-            border-left-color: #2dd4bf;
-        }
-        
-        .server-list li::before {
-            content: counter(server-counter) ".";
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(135deg, #0d9488, #2dd4bf);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
-            font-size: 0.9rem;
-        }
-        
-        .server-name {
-            font-weight: 600;
-            color: #a5b4fc;
-        }
-        
-        .server-duration {
-            color: #2dd4bf;
-            font-weight: 500;
-            float: right;
-            background: rgba(45, 212, 191, 0.1);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-        
-        /* Footer */
-        .footer {
-            font-size: 0.9rem;
-            margin-top: 30px;
-            padding-top: 25px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #a0aec0;
-            position: relative;
-        }
-        
-        .visitor-counter {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(76, 81, 191, 0.2);
-            padding: 8px 18px;
-            border-radius: 20px;
-            margin-top: 15px;
-            font-weight: 500;
-            color: #a5b4fc;
-            gap: 8px;
-            border: 1px solid rgba(76, 81, 191, 0.3);
-        }
-        
-        .visitor-counter i {
-            font-size: 1rem;
-        }
-        
-        /* Music Control */
-        .music-control-container {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 15px;
-        }
-        
-        .music-toggle {
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(135deg, #4c51bf, #667eea);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 
-                0 10px 30px rgba(76, 81, 191, 0.4),
-                0 0 0 2px rgba(255, 255, 255, 0.1);
-            z-index: 1001;
-            transition: all 0.3s ease;
-            border: none;
-            outline: none;
-            animation: pulse-music 3s infinite;
-        }
-        
-        @keyframes pulse-music {
-            0% { box-shadow: 0 10px 30px rgba(76, 81, 191, 0.4), 0 0 0 2px rgba(255, 255, 255, 0.1); }
-            50% { box-shadow: 0 10px 40px rgba(76, 81, 191, 0.6), 0 0 0 2px rgba(255, 255, 255, 0.2); }
-            100% { box-shadow: 0 10px 30px rgba(76, 81, 191, 0.4), 0 0 0 2px rgba(255, 255, 255, 0.1); }
-        }
-        
-        .music-toggle:hover {
-            transform: scale(1.1) rotate(10deg);
-            box-shadow: 
-                0 15px 40px rgba(76, 81, 191, 0.6),
-                0 0 0 2px rgba(255, 255, 255, 0.2);
-        }
-        
-        .music-toggle.playing {
-            background: linear-gradient(135deg, #10b981, #34d399);
-        }
-        
-        .music-icon {
-            font-size: 1.6rem;
-            color: white;
-            transition: color 0.3s ease;
-        }
-        
-        /* Music Panel */
-        .music-panel {
-            background: rgba(15, 23, 42, 0.95);
-            border-radius: 20px;
-            padding: 25px;
-            width: 300px;
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.4),
-                0 8px 32px rgba(31, 38, 135, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transform: translateY(20px) scale(0.9);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(20px);
-        }
-        
-        .music-panel.show {
-            transform: translateY(0) scale(1);
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .music-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #fff;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .music-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .music-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.05);
-            color: #a5b4fc;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-        
-        .music-btn:hover {
-            background: rgba(76, 81, 191, 0.3);
-            border-color: rgba(76, 81, 191, 0.5);
-            transform: scale(1.1);
-        }
-        
-        .play-btn {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #4c51bf, #667eea);
-            border: none;
-            color: white;
-        }
-        
-        .play-btn:hover {
-            background: linear-gradient(135deg, #667eea, #4c51bf);
-        }
-        
-        .volume-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-top: 20px;
-        }
-        
-        .volume-slider {
-            flex: 1;
-            height: 6px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            outline: none;
-            -webkit-appearance: none;
-        }
-        
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #4c51bf;
-            cursor: pointer;
-            border: 3px solid white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        .song-info {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #a0aec0;
-            text-align: center;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .song-title {
-            font-weight: 600;
-            color: #a5b4fc;
-            margin-bottom: 5px;
-        }
-        
-        /* Notification */
-        .music-notification {
-            position: fixed;
-            bottom: 110px;
-            right: 30px;
-            background: rgba(15, 23, 42, 0.95);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(76, 81, 191, 0.3);
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 999;
-            max-width: 250px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .music-notification.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        /* Responsive */
-        @media (max-width: 600px) {
-            .container {
-                padding: 30px 20px;
-                margin: 10px;
-                border-radius: 20px;
-                max-width: 95%;
-            }
-            
-            .profile-frame {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .name {
-                font-size: 2rem;
-            }
-            
-            .link {
-                padding: 16px 20px;
-            }
-            
-            .icon-container {
-                width: 45px;
-                height: 45px;
-            }
-            
-            .music-control-container {
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .music-toggle {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .music-panel {
-                width: 280px;
-                right: 20px;
-            }
-            
-            .benefit-section, .server-list-section {
-                padding: 20px;
-            }
-            
-            .server-list li {
-                padding: 18px;
-                padding-left: 50px;
-                font-size: 1rem;
-            }
-            
-            .server-list li::before {
-                left: 15px;
-                width: 25px;
-                height: 25px;
-                font-size: 0.8rem;
-            }
-        }
-        
-        @media (max-width: 400px) {
-            .music-toggle {
-                width: 55px;
-                height: 55px;
-                bottom: 15px;
-                right: 15px;
-            }
-            
-            .music-panel {
-                width: 260px;
-                right: 15px;
-            }
-            
-            .name {
-                font-size: 1.8rem;
-            }
-            
-            .section-title {
-                font-size: 1.1rem;
-            }
-            
-            .link-title {
-                font-size: 1rem;
-            }
-            
-            .server-list li {
-                padding: 15px;
-                padding-left: 45px;
-                font-size: 0.95rem;
-            }
-            
-            .server-duration {
-                font-size: 0.8rem;
-                padding: 3px 10px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Nefs · Personal Hub</title>
+  <!-- TailwindCSS CDN (lightweight) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 (icons only for allowed SVG icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* custom smooth gradient & minimal glow — exactly like reference but lighter */
+    body {
+      background: linear-gradient(135deg, #0f0c29 0%, #302b63 40%, #24243e 100%);
+      min-height: 100vh;
+      position: relative;
+    }
+    /* MAX 2 radial glows — soft, no performance hit */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 30%, rgba(120, 119, 198, 0.25) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(255, 119, 198, 0.15) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* all content above glow */
+    #app {
+      position: relative;
+      z-index: 2;
+    }
+    /* card base style — matches glassmorphism from ref, but cleaner */
+    .hub-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s;
+    }
+    .hub-card:hover {
+      transform: scale(1.03);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    /* category tabs — clean underline effect */
+    .tab-btn {
+      transition: all 0.15s;
+      border-bottom: 2px solid transparent;
+    }
+    .tab-btn.active {
+      border-bottom-color: #a78bfa;
+      color: #e9d8fd;
+      font-weight: 500;
+    }
+    /* fade transition for grid content — lightweight */
+    .grid-fade {
+      transition: opacity 0.2s ease-in-out;
+    }
+    /* profile image ring */
+    .profile-ring {
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.15), 0 12px 28px -8px black;
+    }
+    /* no heavy animations, no floating icons */
+  </style>
 </head>
-<body>
-    <!-- Animated Background -->
-    <div class="animated-bg">
-        <div class="bg-circle"></div>
-        <div class="bg-circle"></div>
-        <div class="bg-circle"></div>
+<body class="font-sans antialiased text-white flex items-center justify-center p-4 md:p-6">
+  <div id="app" class="w-full max-w-2xl mx-auto flex flex-col items-center">
+    
+    <!-- HEADER (center, clean) -->
+    <div class="text-center mt-2 mb-6">
+      <!-- Profile pic — replace with your own i.ibb link -->
+      <img 
+        src="https://i.pravatar.cc/150?img=7" 
+        alt="Nefs profile" 
+        class="w-28 h-28 md:w-32 md:h-32 rounded-full mx-auto object-cover profile-ring"
+        loading="eager"
+      >
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-5 bg-gradient-to-r from-[#f06] to-[#9f6] bg-clip-text text-transparent drop-shadow-lg">
+        NEFS
+      </h1>
+      <p class="text-white/80 text-sm md:text-base max-w-md mx-auto mt-2 leading-relaxed px-2">
+        "My goal is 500 Subscriber! And now it's been achieved thank you! NEXT 1K? xD"
+      </p>
     </div>
-    
-    <div class="container">
-        <!-- Profil Section -->
-        <div class="profile-container">
-            <div class="profile-frame">
-                <img src="https://i.ibb.co.com/GvrqnS0f/IMG-20250504-WA0042-1.jpg" alt="Nefs Gtps Profile">
-                <div class="online-status"></div>
-            </div>
-        </div>
-        
-        <h1 class="name">Nefs Gtps</h1>
-        <!-- BIO DENGAN TAMBAHAN HARGA JASA 10K/JAM -->
-        <p class="bio">Selamat datang di Linktree <span class="highlight">Nefs Gtps</span>!<br>👏 <span class="highlight">GTPS Enthusiast</span> & Content Creator 😊<br>💰 <span class="highlight">Jasa BA 10k/jam</span></p>
-        
-        <!-- Section: Buy Ba -->
-        <div class="section-title">
-            <i class="fas fa-shopping-cart"></i>
-            <span>Buy Ba</span>
-        </div>
-        <div class="links">
-            <a href="https://wa.me/6285374128738?text=Halo%20bang%20aku%20mau%20beli%20jasa%20ba%20dong%20bisa%20kirimin%20list%20harganya?" class="link" target="_blank">
-                <div class="icon-container">
-                    <i class="fab fa-whatsapp icon"></i>
-                </div>
-                <div class="link-text">
-                    <div class="link-title">Buy Promote Ba</div>
-                    <div class="link-desc">Jasa promosi BA terpercaya • WhatsApp: 0853-7412-8738</div>
-                </div>
-                <i class="fas fa-external-link-alt" style="color: #a0aec0; font-size: 0.9rem;"></i>
-            </a>
-        </div>
-        
-        <!-- Section: Grup WhatsApp -->
-        <div class="section-title">
-            <i class="fas fa-users"></i>
-            <span>Grup WhatsApp</span>
-        </div>
-        <div class="links">
-            <a href="https://discord.gg/9cnf86KR5Q" class="link" target="_blank">
-                <div class="icon-container">
-                    <i class="fas fa-comments icon"></i>
-                </div>
-                <div class="link-text">
-                    <div class="link-title">Grup Komunitas GTPS</div>
-                    <div class="link-desc">Bergabung dengan komunitas GTPS terbesar</div>
-                </div>
-                <i class="fas fa-external-link-alt" style="color: #a0aec0; font-size: 0.9rem;"></i>
-            </a>
-        </div>
-        
-        <!-- Section: Host -->
-        <div class="section-title">
-            <i class="fas fa-globe"></i>
-            <span>Host</span>
-        </div>
-        <div class="links">
-            <a href="https://gtps.link/tutorial" class="link" target="_blank">
-                <div class="icon-container">
-                    <i class="fas fa-server icon"></i>
-                </div>
-                <div class="link-text">
-                    <div class="link-title">All Host GTPS</div>
-                    <div class="link-desc">Kumpulan semua host GTPS yang tersedia</div>
-                </div>
-                <i class="fas fa-external-link-alt" style="color: #a0aec0; font-size: 0.9rem;"></i>
-            </a>
-        </div>
-        
-        <!-- Section: Aplikasi Premium (di bawah Host) -->
-        <div class="section-title">
-            <i class="fas fa-store"></i>
-            <span>Aplikasi Premium</span>
-        </div>
-        <div class="links">
-            <a href="https://nefs-storee.vercel.app/" class="link" target="_blank">
-                <div class="icon-container">
-                    <i class="fas fa-crown icon"></i>
-                </div>
-                <div class="link-text">
-                    <div class="link-title">Nefs Store - Aplikasi Premium</div>
-                    <div class="link-desc">Koleksi aplikasi premium dan tools eksklusif</div>
-                </div>
-                <i class="fas fa-external-link-alt" style="color: #a0aec0; font-size: 0.9rem;"></i>
-            </a>
-        </div>
-        
-        <!-- Section: Aplikasi Host -->
-        <div class="section-title">
-            <i class="fas fa-download"></i>
-            <span>Aplikasi Host</span>
-        </div>
-        <div class="links">
-            <a href="https://sfile.co/7SNc2kJhLyj" class="link" target="_blank">
-                <div class="icon-container">
-                    <i class="fas fa-bolt icon"></i>
-                </div>
-                <div class="link-text">
-                    <div class="link-title">Powertunnel Download</div>
-                    <div class="link-desc">Aplikasi untuk bypass dengan kecepatan maksimal</div>
-                </div>
-                <i class="fas fa-external-link-alt" style="color: #a0aec0; font-size: 0.9rem;"></i>
-            </a>
-            
-            <a href="https://sfile.co/4xXabY4QEEP" class="link" target="_blank">
-                <div class="icon-container">
-                    <i class="fas fa-cloud icon"></i>
-                </div>
-                <div class="link-text">
-                    <div class="link-title">Virtual Host Download</div>
-                    <div class="link-desc">Aplikasi host virtual untuk pengalaman terbaik</div>
-                </div>
-                <i class="fas fa-external-link-alt" style="color: #a0aec0; font-size: 0.9rem;"></i>
-            </a>
-        </div>
-        
-        <!-- Benefit Stream Section -->
-        <div class="benefit-section">
-            <div class="benefit-title">
-                <i class="fas fa-crown"></i>
-                BENEFIT STREAM
-            </div>
-            
-            <div class="benefit-grid">
-                <div class="benefit-item">
-                    <div class="benefit-icon">🎥</div>
-                    <h4>Live yang Asik & Berkelas</h4>
-                    <p>Live sangat friendly serta fokus pada interaksi dengan penonton, agar live semakin ramai dan asik! Kami memberikan pengalaman streaming yang menyenangkan dan profesional dengan kualitas terbaik.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-icon">👑</div>
-                    <h4>Streamer Mantan Owner GTPS</h4>
-                    <p>Pengalaman sebagai mantan Owner GTPS membantu memahami dan mengerti cara mengelola server dengan baik. Hal ini mengurangi risiko tindakan clone / penipuan dalam server karena pemahaman mendalam tentang sistem GTPS.</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Server Live List Section -->
-        <div class="server-list-section">
-            <div class="server-list-title">
-                <i class="fas fa-gamepad"></i>
-                List Server Live
-            </div>
-            
-            <ol class="server-list">
-                <li>
-                    <span class="server-name">GROWCASTLE</span>
-                    <span class="server-duration">3 jam</span>
-                </li>
-            </ol>
-            
-            <p style="margin-top: 20px; color: #cbd5e0; font-size: 0.95rem; text-align: center;">
-                <i class="fas fa-info-circle" style="color: #2dd4bf; margin-right: 8px;"></i>
-                Jadwal live bisa berubah, cek update di grup WhatsApp
-            </p>
-        </div>
-        
-        <div class="footer">
-            © 2025 Nefs Gtps • Premium Linktree Design<br>
-            <span class="visitor-counter">
-                <i class="fas fa-eye"></i>
-                <span id="visitorCount">0</span> Pengunjung
-            </span>
-        </div>
+
+    <!-- CATEGORY TABS (menu, no reload) -->
+    <div class="flex flex-wrap justify-center gap-1 sm:gap-3 mb-7 w-full px-2">
+      <button data-cat="gtps" class="tab-btn active px-4 py-2 text-sm sm:text-base font-medium text-white/80 hover:text-white transition">GTPS</button>
+      <button data-cat="nefs" class="tab-btn px-4 py-2 text-sm sm:text-base font-medium text-white/80 hover:text-white transition">NEFS STORE & COMMUNITY</button>
+      <button data-cat="host" class="tab-btn px-4 py-2 text-sm sm:text-base font-medium text-white/80 hover:text-white transition">APLIKASI HOST</button>
+      <button data-cat="social" class="tab-btn px-4 py-2 text-sm sm:text-base font-medium text-white/80 hover:text-white transition">SOCIAL MEDIA</button>
     </div>
-    
-    <!-- Music Control Container -->
-    <div class="music-control-container">
-        <div class="music-notification" id="musicNotification">
-            🎵 Musik otomatis diputar: <strong>Kingdom Dance - Tangled</strong>
-        </div>
-        
-        <div class="music-panel" id="musicPanel">
-            <div class="music-title">
-                <i class="fas fa-music"></i>
-                Kontrol Musik
-            </div>
-            
-            <div class="music-controls">
-                <button class="music-btn" id="prevBtn" disabled>
-                    <i class="fas fa-step-backward"></i>
-                </button>
-                <button class="music-btn play-btn" id="playBtn">
-                    <i class="fas fa-play" id="playIcon"></i>
-                </button>
-                <button class="music-btn" id="nextBtn" disabled>
-                    <i class="fas fa-step-forward"></i>
-                </button>
-            </div>
-            
-            <div class="volume-container">
-                <i class="fas fa-volume-down" style="color: #a5b4fc;"></i>
-                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="0.7">
-                <i class="fas fa-volume-up" style="color: #a5b4fc;"></i>
-            </div>
-            
-            <div class="song-info">
-                <div class="song-title" id="songTitle">Kingdom Dance - Tangled</div>
-                <div id="songArtist">Alan Menken</div>
-            </div>
-        </div>
-        
-        <button class="music-toggle" id="musicToggle">
-            <i class="fas fa-music music-icon" id="musicIcon"></i>
-        </button>
+
+    <!-- GRID CONTAINER (cards) -->
+    <div id="gridContainer" class="w-full grid grid-cols-2 md:grid-cols-3 gap-4 transition-opacity duration-200 grid-fade">
+      <!-- dynamically rendered via JS -->
     </div>
-    
-    <audio id="backgroundAudio" loop preload="auto">
-        <source src="https://cdn.discordapp.com/attachments/1217392524621119490/1408374654493523979/Kingdom_Dance_From_Tangled_Score_-_Alan_Menken.mp3" type="audio/mpeg">
-        Browser Anda tidak mendukung elemen audio.
-    </audio>
-    
-    <script>
-        // Script tetap sama
-        const audio = document.getElementById('backgroundAudio');
-        const musicToggle = document.getElementById('musicToggle');
-        const musicPanel = document.getElementById('musicPanel');
-        const playBtn = document.getElementById('playBtn');
-        const playIcon = document.getElementById('playIcon');
-        const volumeSlider = document.getElementById('volumeSlider');
-        const songTitle = document.getElementById('songTitle');
-        const musicIcon = document.getElementById('musicIcon');
-        const visitorCount = document.getElementById('visitorCount');
-        const musicNotification = document.getElementById('musicNotification');
+
+    <!-- subtle footer (optional, like reference) -->
+    <div class="mt-8 text-white/40 text-xs border-t border-white/10 pt-5 w-full text-center">
+      <span class="inline-block w-2 h-2 bg-emerald-400 rounded-full mr-1.5 align-middle"></span> online · Nefs Hub
+      <span class="mx-2">•</span> © 2025 · clean grid
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      "use strict";
+
+      // ---------- DATA ITEMS (12 total) ----------
+      const items = [
+        // GTPS (3)
+        { 
+          category: 'gtps', 
+          title: 'Growthaven WhatsApp', 
+          url: 'https://chat.whatsapp.com/GTLfZoXYFgY501NnLeiWSC?mode=gi_t',
+          iconType: 'img',   // wajib img (bisa diganti i.ibb)
+          iconSrc: 'https://placehold.co/80x80/2d2159/white?text=GW',   // placeholder, ganti dengan i.ibb nanti
+        },
+        { 
+          category: 'gtps', 
+          title: 'All Host Growthaven', 
+          url: 'https://example.com/host',
+          iconType: 'img',
+          iconSrc: 'https://placehold.co/80x80/3a2c6e/white?text=AH',
+        },
+        { 
+          category: 'gtps', 
+          title: 'Growthaven APK', 
+          url: 'https://example.com/apk',
+          iconType: 'img',
+          iconSrc: 'https://placehold.co/80x80/4c3b8c/white?text=APK',
+        },
         
-        let isPlaying = false;
-        let isPanelOpen = false;
-        let audioStarted = false;
+        // NEFS STORE & COMMUNITY (3)
+        { 
+          category: 'nefs', 
+          title: 'Nefs Community', 
+          url: 'https://chat.whatsapp.com/GTLfZoXYFgY501NnLeiWSC?mode=gi_t',
+          iconType: 'fa',    // WAJIB icon whatsapp (SVG bawaan)
+          iconClass: 'fab fa-whatsapp',
+        },
+        { 
+          category: 'nefs', 
+          title: 'Discord Group', 
+          url: 'https://discord.gg/',
+          iconType: 'fa',
+          iconClass: 'fab fa-discord',
+        },
+        { 
+          category: 'nefs', 
+          title: 'Digital Store', 
+          url: 'https://example.com/store',
+          iconType: 'img',
+          iconSrc: 'https://placehold.co/80x80/5e4aa3/white?text=STORE',
+        },
         
-        let visitors = localStorage.getItem('nefsVisitors') || 0;
-        visitors = parseInt(visitors) + 1;
-        localStorage.setItem('nefsVisitors', visitors);
-        visitorCount.textContent = visitors;
+        // APLIKASI HOST (3)
+        { 
+          category: 'host', 
+          title: 'Hosts GO', 
+          url: 'https://example.com/hostsgo',
+          iconType: 'img',
+          iconSrc: 'https://placehold.co/80x80/6b4fb0/white?text=HGO',
+        },
+        { 
+          category: 'host', 
+          title: 'PowerTunnel', 
+          url: 'https://example.com/powertunnel',
+          iconType: 'img',
+          iconSrc: 'https://placehold.co/80x80/7c5fc7/white?text=PT',
+        },
+        { 
+          category: 'host', 
+          title: 'Virtual Host', 
+          url: 'https://example.com/virtualhost',
+          iconType: 'img',
+          iconSrc: 'https://placehold.co/80x80/8f70e0/white?text=VH',
+        },
         
-        audio.volume = volumeSlider.value;
-        
-        function startAudioWithInteraction() {
-            if (!audioStarted) {
-                const playPromise = audio.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        isPlaying = true;
-                        playIcon.className = 'fas fa-pause';
-                        musicToggle.classList.add('playing');
-                        musicIcon.className = 'fas fa-pause';
-                        audioStarted = true;
-                        showNotification("🎵 Musik otomatis diputar");
-                        setTimeout(hideNotification, 4000);
-                    }).catch(error => {
-                        audioStarted = false;
-                        showNotification("🔈 Klik tombol musik untuk memutar");
-                        setTimeout(hideNotification, 5000);
-                    });
-                }
-            }
+        // SOCIAL MEDIA (3)
+        { 
+          category: 'social', 
+          title: 'YouTube', 
+          url: 'https://youtube.com/@nefsgtps1',
+          iconType: 'fa',
+          iconClass: 'fab fa-youtube',
+        },
+        { 
+          category: 'social', 
+          title: 'TikTok', 
+          url: 'https://tiktok.com/',
+          iconType: 'fa',
+          iconClass: 'fab fa-tiktok',
+        },
+        { 
+          category: 'social', 
+          title: 'Instagram', 
+          url: 'https://instagram.com/',
+          iconType: 'fa',
+          iconClass: 'fab fa-instagram',
         }
+      ];
+
+      // ---------- DOM elements ----------
+      const grid = document.getElementById('gridContainer');
+      const tabs = document.querySelectorAll('[data-cat]');
+      
+      // active category (default: gtps)
+      let activeCategory = 'gtps';
+
+      // ---------- RENDER FUNCTION (lightweight, no heavy ops) ----------
+      function renderGrid(category) {
+        // filter items
+        const filtered = items.filter(item => item.category === category);
         
-        function showNotification(message) {
-            if (musicNotification) {
-                musicNotification.innerHTML = message;
-                musicNotification.classList.add('show');
-            }
-        }
-        
-        function hideNotification() {
-            if (musicNotification) {
-                musicNotification.classList.remove('show');
-            }
-        }
-        
-        window.addEventListener('load', function() {
-            setTimeout(startAudioWithInteraction, 1000);
+        // build HTML string (fast)
+        let html = '';
+        filtered.forEach(item => {
+          // determine icon markup
+          let iconMarkup = '';
+          if (item.iconType === 'img') {
+            // IMG logo — ready for i.ibb replacement
+            iconMarkup = `<img src="${item.iconSrc}" alt="${item.title}" class="w-12 h-12 md:w-14 md:h-14 object-contain rounded-xl" loading="lazy">`;
+          } else {
+            // Font Awesome icon (SVG bawaan)
+            iconMarkup = `<i class="${item.iconClass} text-4xl md:text-5xl"></i>`;
+          }
+          
+          // card structure
+          html += `
+            <a href="${item.url}" target="_blank" rel="noopener noreferrer" 
+               class="hub-card rounded-2xl p-4 flex flex-col items-center text-center no-underline text-white group">
+              <div class="w-full flex justify-center mb-3 min-h-[56px] items-center">
+                ${iconMarkup}
+              </div>
+              <h3 class="font-semibold text-sm md:text-base tracking-wide leading-tight break-words w-full">
+                ${item.title}
+              </h3>
+            </a>
+          `;
         });
         
-        document.addEventListener('click', function initAudio() {
-            if (!audioStarted) startAudioWithInteraction();
-        }, { once: true });
+        // apply fade: set opacity to 0.5 quickly then update & restore
+        grid.style.opacity = '0.6';
+        setTimeout(() => {
+          grid.innerHTML = html;
+          grid.style.opacity = '1';
+        }, 30); // tiny delay for smooth perception
+      }
+
+      // ---------- TAB SWITCHING (lightweight) ----------
+      function setActiveTab(category) {
+        activeCategory = category;
         
-        musicToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            isPanelOpen = !isPanelOpen;
-            if (isPanelOpen) musicPanel.classList.add('show');
-            else musicPanel.classList.remove('show');
+        // update active class on buttons
+        tabs.forEach(btn => {
+          const cat = btn.getAttribute('data-cat');
+          if (cat === category) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
         });
         
-        playBtn.addEventListener('click', function() {
-            if (isPlaying) {
-                audio.pause();
-                playIcon.className = 'fas fa-play';
-                musicToggle.classList.remove('playing');
-                musicIcon.className = 'fas fa-music';
-            } else {
-                audio.play().then(() => {
-                    playIcon.className = 'fas fa-pause';
-                    musicToggle.classList.add('playing');
-                    musicIcon.className = 'fas fa-pause';
-                }).catch(error => {
-                    showNotification("❌ Gagal memutar audio");
-                    setTimeout(hideNotification, 3000);
-                });
-            }
-            isPlaying = !isPlaying;
-            audioStarted = true;
+        renderGrid(category);
+      }
+
+      // ---------- EVENT LISTENERS (no ripple, no heavy) ----------
+      tabs.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const cat = btn.getAttribute('data-cat');
+          if (cat && cat !== activeCategory) {
+            setActiveTab(cat);
+          }
+          // prevent any default if needed
+          e.preventDefault();
         });
-        
-        volumeSlider.addEventListener('input', function() {
-            audio.volume = this.value;
-            const volumeIcons = document.querySelectorAll('.fa-volume-down, .fa-volume-up');
-            if (this.value == 0) {
-                volumeIcons.forEach(icon => icon.className = 'fas fa-volume-mute');
-                volumeIcons.forEach(icon => icon.style.color = '#a0aec0');
-            } else if (this.value < 0.5) {
-                volumeIcons.forEach(icon => icon.className = 'fas fa-volume-down');
-                volumeIcons.forEach(icon => icon.style.color = '#a5b4fc');
-            } else {
-                volumeIcons.forEach(icon => icon.className = 'fas fa-volume-up');
-                volumeIcons.forEach(icon => icon.style.color = '#a5b4fc');
-            }
-        });
-        
-        audio.addEventListener('play', function() {
-            songTitle.textContent = "Kingdom Dance - Tangled";
-        });
-        
-        audio.addEventListener('ended', function() {
-            audio.currentTime = 0;
-            audio.play();
-        });
-        
-        document.addEventListener('click', function(event) {
-            if (!musicToggle.contains(event.target) && !musicPanel.contains(event.target) && isPanelOpen) {
-                musicPanel.classList.remove('show');
-                isPanelOpen = false;
-            }
-        });
-        
-        document.addEventListener('keydown', function(event) {
-            if (event.code === 'Space' && !event.target.matches('input, textarea')) {
-                event.preventDefault();
-                playBtn.click();
-            }
-            if (event.code === 'KeyM' && !event.target.matches('input, textarea')) {
-                event.preventDefault();
-                musicToggle.click();
-            }
-            if (event.code === 'ArrowUp' && !event.target.matches('input, textarea')) {
-                event.preventDefault();
-                volumeSlider.value = Math.min(1, parseFloat(volumeSlider.value) + 0.1);
-                volumeSlider.dispatchEvent(new Event('input'));
-            }
-            if (event.code === 'ArrowDown' && !event.target.matches('input, textarea')) {
-                event.preventDefault();
-                volumeSlider.value = Math.max(0, parseFloat(volumeSlider.value) - 0.1);
-                volumeSlider.dispatchEvent(new Event('input'));
-            }
-        });
-        
-        musicPanel.addEventListener('click', e => e.stopPropagation());
-        songTitle.textContent = "Kingdom Dance - Tangled";
-        
-        audio.addEventListener('error', function(e) {
-            console.error("Audio error:", e);
-            showNotification("❌ Error muat audio. Refresh?");
-        });
-    </script>
+      });
+
+      // ---------- INITIAL RENDER (GTPS active) ----------
+      // set default active tab styling (already has 'active' class in HTML on GTPS)
+      // but ensure data consistency
+      const defaultActive = document.querySelector('[data-cat="gtps"]');
+      if(defaultActive) defaultActive.classList.add('active');
+      renderGrid('gtps');
+
+      // ---------- EXTRA LIGHTWEIGHT: no floating, no ripple, no infinite loops ----------
+      // Preload subtle improvement: if any image fails, it's fine.
+      
+      // Optional: handle very small screen touch optimizations (nothing heavy)
+      
+    })();
+  </script>
+  <!-- no extra libraries, pure vanilla & tailwind -->
+  <!-- background radial glows already in CSS ::before — max 2, smooth -->
+  <!-- Catatan: semua logo img menggunakan placeholder, siap diganti dengan link i.ibb.com sesuai keinginan -->
+  <!-- untuk ikon wajib (whatsapp,discord,youtube,tiktok,ig) sudah pakai fontawesome svg -->
 </body>
 </html>
