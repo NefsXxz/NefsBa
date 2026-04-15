@@ -4,18 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>Nefs · Personal Hub</title>
-  <!-- TailwindCSS CDN (lightweight) -->
+  <!-- TailwindCSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome 6 (icons only for allowed SVG icons) -->
+  <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* custom smooth gradient & minimal glow — exactly like reference but lighter */
+    /* custom smooth gradient & minimal glow */
     body {
       background: linear-gradient(135deg, #0f0c29 0%, #302b63 40%, #24243e 100%);
       min-height: 100vh;
       position: relative;
     }
-    /* MAX 2 radial glows — soft, no performance hit */
     body::before {
       content: '';
       position: fixed;
@@ -28,12 +27,10 @@
       pointer-events: none;
       z-index: 0;
     }
-    /* all content above glow */
     #app {
       position: relative;
       z-index: 2;
     }
-    /* card base style — matches glassmorphism from ref, but cleaner */
     .hub-card {
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(8px);
@@ -47,7 +44,6 @@
       background: rgba(255, 255, 255, 0.15);
       border-color: rgba(255, 255, 255, 0.2);
     }
-    /* category tabs — clean underline effect */
     .tab-btn {
       transition: all 0.15s;
       border-bottom: 2px solid transparent;
@@ -57,23 +53,19 @@
       color: #e9d8fd;
       font-weight: 500;
     }
-    /* fade transition for grid content — lightweight */
     .grid-fade {
       transition: opacity 0.2s ease-in-out;
     }
-    /* profile image ring */
     .profile-ring {
       box-shadow: 0 0 0 3px rgba(255,255,255,0.15), 0 12px 28px -8px black;
     }
-    /* no heavy animations, no floating icons */
   </style>
 </head>
 <body class="font-sans antialiased text-white flex items-center justify-center p-4 md:p-6">
   <div id="app" class="w-full max-w-2xl mx-auto flex flex-col items-center">
     
-    <!-- HEADER (center, clean) -->
+    <!-- HEADER -->
     <div class="text-center mt-2 mb-6">
-      <!-- Profile pic — replace with your own i.ibb link -->
       <img 
         src="https://i.ibb.co.com/5xM0NmFM/file-00000000af887208a1bbb09007ccd32f.png" 
         alt="Nefs profile" 
@@ -88,7 +80,7 @@
       </p>
     </div>
 
-    <!-- CATEGORY TABS (menu, no reload) -->
+    <!-- CATEGORY TABS -->
     <div class="flex flex-wrap justify-center gap-1 sm:gap-3 mb-7 w-full px-2">
       <button data-cat="gtps" class="tab-btn active px-4 py-2 text-sm sm:text-base font-medium text-white/80 hover:text-white transition">GTPS</button>
       <button data-cat="nefs" class="tab-btn px-4 py-2 text-sm sm:text-base font-medium text-white/80 hover:text-white transition">NEFS STORE & COMMUNITY</button>
@@ -96,12 +88,12 @@
       <button data-cat="social" class="tab-btn px-4 py-2 text-sm sm:text-base font-medium text-white/80 hover:text-white transition">SOCIAL MEDIA</button>
     </div>
 
-    <!-- GRID CONTAINER (cards) -->
+    <!-- GRID CONTAINER -->
     <div id="gridContainer" class="w-full grid grid-cols-2 md:grid-cols-3 gap-4 transition-opacity duration-200 grid-fade">
-      <!-- dynamically rendered via JS -->
+      <!-- dinamis dari JS -->
     </div>
 
-    <!-- subtle footer (optional, like reference) -->
+    <!-- FOOTER -->
     <div class="mt-8 text-white/40 text-xs border-t border-white/10 pt-5 w-full text-center">
       <span class="inline-block w-2 h-2 bg-emerald-400 rounded-full mr-1.5 align-middle"></span> online · Nefs Hub
       <span class="mx-2">•</span> © 2025 · clean grid
@@ -112,15 +104,15 @@
     (function(){
       "use strict";
 
-      // ---------- DATA ITEMS (12 total) ----------
+      // ---------- DATA ITEMS (dengan fitur enabled true/false) ----------
       const items = [
-        // GTPS (3)
+        // GTPS (4 item, termasuk Discord Growhaven)
         { 
           category: 'gtps', 
           title: 'Growthaven WhatsApp', 
           url: 'https://chat.whatsapp.com/JUS0adpt9xqEA85czWZaCk?mode=gi_t',
-          iconType: 'img',   // wajib img (bisa diganti i.ibb)
-          iconSrc: 'https://i.ibb.co.com/Sw8z8Mgq/IMG-20260407-132356-149.jpg',   // placeholder, ganti dengan i.ibb nanti
+          iconType: 'img',
+          iconSrc: 'https://i.ibb.co.com/Sw8z8Mgq/IMG-20260407-132356-149.jpg',
         },
         { 
           category: 'gtps', 
@@ -128,6 +120,7 @@
           url: 'https://gtpshost.com/d/GROWHAVEN-GH',
           iconType: 'img',
           iconSrc: 'https://i.ibb.co.com/Sw8z8Mgq/IMG-20260407-132356-149.jpg',
+          enabled: true,    // <-- UBAH JADI false UNTUK MENYEMBUNYIKAN
         },
         { 
           category: 'gtps', 
@@ -135,6 +128,15 @@
           url: 'https://www.mediafire.com/file/zzrvu008a9l07y8/GROWHAVEN.apk/file',
           iconType: 'img',
           iconSrc: 'https://i.ibb.co.com/Sw8z8Mgq/IMG-20260407-132356-149.jpg',
+          enabled: true,    // <-- UBAH JADI false UNTUK MENYEMBUNYIKAN
+        },
+        { 
+          category: 'gtps', 
+          title: 'Discord Growhaven',    // Logo pakai gambar, bukan ikon
+          url: 'https://discord.gg/FYhKqEvhHh',   // Ganti dengan link discord Growhaven asli
+          iconType: 'img',                // <-- SEKARANG PAKAI GAMBAR
+          iconSrc: 'https://i.ibb.co.com/placeholder-discord.png',  // GANTI dengan URL logo Discord kamu
+          enabled: true,                  // bisa diatur false jika ingin disembunyikan
         },
         
         // NEFS STORE & COMMUNITY (3)
@@ -142,7 +144,7 @@
           category: 'nefs', 
           title: 'Nefs Community', 
           url: 'https://chat.whatsapp.com/GTLfZoXYFgY501NnLeiWSC?mode=gi_t',
-          iconType: 'fa',    // WAJIB icon whatsapp (SVG bawaan)
+          iconType: 'fa',
           iconClass: 'fab fa-whatsapp',
         },
         { 
@@ -211,28 +213,23 @@
       const grid = document.getElementById('gridContainer');
       const tabs = document.querySelectorAll('[data-cat]');
       
-      // active category (default: gtps)
       let activeCategory = 'gtps';
 
-      // ---------- RENDER FUNCTION (lightweight, no heavy ops) ----------
+      // ---------- RENDER (dengan filter enabled !== false) ----------
       function renderGrid(category) {
-        // filter items
-        const filtered = items.filter(item => item.category === category);
+        const filtered = items.filter(item => 
+          item.category === category && item.enabled !== false
+        );
         
-        // build HTML string (fast)
         let html = '';
         filtered.forEach(item => {
-          // determine icon markup
           let iconMarkup = '';
           if (item.iconType === 'img') {
-            // IMG logo — ready for i.ibb replacement
             iconMarkup = `<img src="${item.iconSrc}" alt="${item.title}" class="w-12 h-12 md:w-14 md:h-14 object-contain rounded-xl" loading="lazy">`;
           } else {
-            // Font Awesome icon (SVG bawaan)
             iconMarkup = `<i class="${item.iconClass} text-4xl md:text-5xl"></i>`;
           }
           
-          // card structure
           html += `
             <a href="${item.url}" target="_blank" rel="noopener noreferrer" 
                class="hub-card rounded-2xl p-4 flex flex-col items-center text-center no-underline text-white group">
@@ -246,60 +243,45 @@
           `;
         });
         
-        // apply fade: set opacity to 0.5 quickly then update & restore
         grid.style.opacity = '0.6';
         setTimeout(() => {
           grid.innerHTML = html;
           grid.style.opacity = '1';
-        }, 30); // tiny delay for smooth perception
+        }, 30);
       }
 
-      // ---------- TAB SWITCHING (lightweight) ----------
+      // ---------- TAB SWITCHING ----------
       function setActiveTab(category) {
         activeCategory = category;
-        
-        // update active class on buttons
         tabs.forEach(btn => {
           const cat = btn.getAttribute('data-cat');
-          if (cat === category) {
-            btn.classList.add('active');
-          } else {
-            btn.classList.remove('active');
-          }
+          btn.classList.toggle('active', cat === category);
         });
-        
         renderGrid(category);
       }
 
-      // ---------- EVENT LISTENERS (no ripple, no heavy) ----------
+      // ---------- EVENT LISTENERS ----------
       tabs.forEach(btn => {
         btn.addEventListener('click', (e) => {
           const cat = btn.getAttribute('data-cat');
           if (cat && cat !== activeCategory) {
             setActiveTab(cat);
           }
-          // prevent any default if needed
           e.preventDefault();
         });
       });
 
-      // ---------- INITIAL RENDER (GTPS active) ----------
-      // set default active tab styling (already has 'active' class in HTML on GTPS)
-      // but ensure data consistency
-      const defaultActive = document.querySelector('[data-cat="gtps"]');
-      if(defaultActive) defaultActive.classList.add('active');
+      // ---------- INIT ----------
+      document.querySelector('[data-cat="gtps"]').classList.add('active');
       renderGrid('gtps');
 
-      // ---------- EXTRA LIGHTWEIGHT: no floating, no ripple, no infinite loops ----------
-      // Preload subtle improvement: if any image fails, it's fine.
-      
-      // Optional: handle very small screen touch optimizations (nothing heavy)
-      
     })();
   </script>
-  <!-- no extra libraries, pure vanilla & tailwind -->
-  <!-- background radial glows already in CSS ::before — max 2, smooth -->
-  <!-- Catatan: semua logo img menggunakan placeholder, siap diganti dengan link i.ibb.com sesuai keinginan -->
-  <!-- untuk ikon wajib (whatsapp,discord,youtube,tiktok,ig) sudah pakai fontawesome svg -->
+  <!-- 
+    CATATAN PENTING:
+    - "All Host Growthaven" & "Growthaven APK": ubah enabled: true menjadi false untuk menyembunyikan.
+    - "Discord Growhaven" sekarang pakai gambar (iconType: 'img'). Ganti URL iconSrc dengan logo Discord milikmu.
+    - Semua pengaturan dilakukan langsung di dalam kode.
+  -->
 </body>
 </html>
