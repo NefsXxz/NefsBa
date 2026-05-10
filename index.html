@@ -9,176 +9,59 @@
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* === BACKGROUND ANIMASI & PARTIKEL === */
+    /* custom smooth gradient & minimal glow */
     body {
-      margin: 0;
+      background: linear-gradient(135deg, #0f0c29 0%, #302b63 40%, #24243e 100%);
       min-height: 100vh;
-      background: #0f0c29;
       position: relative;
-      overflow-x: hidden;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
-
-    /* Gradient animasi bergerak */
     body::before {
       content: '';
       position: fixed;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: conic-gradient(from 0deg at 50% 50%, 
-        #302b63, #24243e, #0f0c29, #1a143a, #302b63);
-      animation: rotateGradient 20s linear infinite;
-      z-index: 0;
-      opacity: 0.7;
-    }
-
-    /* Overlay titik-titik bintang */
-    body::after {
-      content: '';
-      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0,0,0,0)),
-                        radial-gradient(1px 1px at 40px 70px, #f0f, rgba(0,0,0,0)),
-                        radial-gradient(1px 1px at 80px 20px, #0ff, rgba(0,0,0,0)),
-                        radial-gradient(1px 1px at 150px 120px, #ffffff, rgba(0,0,0,0)),
-                        radial-gradient(1px 1px at 200px 40px, #f0f, rgba(0,0,0,0)),
-                        radial-gradient(1px 1px at 280px 180px, #0ff, rgba(0,0,0,0)),
-                        radial-gradient(2px 2px at 350px 90px, #ffffff, rgba(0,0,0,0)),
-                        radial-gradient(1px 1px at 400px 130px, #f0f, rgba(0,0,0,0)),
-                        radial-gradient(1px 1px at 460px 50px, #ffffff, rgba(0,0,0,0));
-      background-size: 500px 500px;
-      animation: twinkle 8s ease-in-out infinite alternate;
+      background: radial-gradient(circle at 20% 30%, rgba(120, 119, 198, 0.25) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(255, 119, 198, 0.15) 0%, transparent 50%);
+      pointer-events: none;
       z-index: 0;
-      pointer-events: none;
     }
-
-    @keyframes rotateGradient {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    @keyframes twinkle {
-      0% { opacity: 0.5; background-position: 0% 0%; }
-      100% { opacity: 1; background-position: 100% 100%; }
-    }
-
-    /* Canvas untuk partikel bergerak (bintang jatuh) */
-    #starCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
-    }
-
     #app {
       position: relative;
       z-index: 2;
     }
-
-    /* === KARTU === */
     .hub-card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.4), 0 0 15px rgba(167, 139, 250, 0.2);
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s;
     }
     .hub-card:hover {
-      transform: translateY(-5px) scale(1.03);
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.25);
-      box-shadow: 0 15px 30px -10px rgba(0,0,0,0.6), 0 0 25px rgba(168, 85, 247, 0.4);
+      transform: scale(1.03);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.2);
     }
-
     .tab-btn {
-      transition: all 0.2s ease;
+      transition: all 0.15s;
       border-bottom: 2px solid transparent;
     }
     .tab-btn.active {
       border-bottom-color: #a78bfa;
       color: #e9d8fd;
       font-weight: 500;
-      text-shadow: 0 0 8px rgba(167, 139, 250, 0.6);
     }
-
     .grid-fade {
-      transition: opacity 0.25s ease-in-out;
+      transition: opacity 0.2s ease-in-out;
     }
-
     .profile-ring {
-      box-shadow: 0 0 0 4px rgba(255,255,255,0.15), 0 20px 40px -12px black, 0 0 30px rgba(255, 105, 180, 0.5);
-      animation: softGlow 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes softGlow {
-      0% { box-shadow: 0 0 0 4px rgba(255,255,255,0.15), 0 20px 40px -12px black, 0 0 20px rgba(255,105,180,0.4); }
-      100% { box-shadow: 0 0 0 4px rgba(255,255,255,0.25), 0 20px 40px -12px black, 0 0 35px rgba(255,105,180,0.8); }
-    }
-
-    /* === TOMBOL MUSIK === */
-    #music-toggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 999;
-      background: rgba(20, 20, 40, 0.6);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 50%;
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 22px;
-      cursor: pointer;
-      transition: 0.2s;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    }
-    #music-toggle:hover {
-      background: rgba(167, 139, 250, 0.3);
-      transform: scale(1.1);
-    }
-    #music-toggle.playing i {
-      animation: spin 3s linear infinite;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: rgba(0,0,0,0.2);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #a78bfa;
-      border-radius: 10px;
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.15), 0 12px 28px -8px black;
     }
   </style>
 </head>
-<body class="antialiased text-white flex items-center justify-center p-4 md:p-6">
-
-  <!-- Canvas Bintang Jatuh -->
-  <canvas id="starCanvas"></canvas>
-
-  <!-- Tombol Musik -->
-  <button id="music-toggle" title="Putar Musik Latar">
-    <i class="fas fa-music"></i>
-  </button>
-
+<body class="font-sans antialiased text-white flex items-center justify-center p-4 md:p-6">
   <div id="app" class="w-full max-w-2xl mx-auto flex flex-col items-center">
     
     <!-- HEADER -->
@@ -192,7 +75,7 @@
       <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-5 bg-gradient-to-r from-[#f06] to-[#9f6] bg-clip-text text-transparent drop-shadow-lg">
         NEFS GTPS
       </h1>
-      <p class="text-white/80 text-sm md:text-base max-w-md mx-auto mt-2 leading-relaxed px-2 italic">
+      <p class="text-white/80 text-sm md:text-base max-w-md mx-auto mt-2 leading-relaxed px-2">
         "My goal is 500 Subscriber! And now it's been achieved thank you! NEXT 1K? xD"
       </p>
     </div>
@@ -212,103 +95,140 @@
 
     <!-- FOOTER -->
     <div class="mt-8 text-white/40 text-xs border-t border-white/10 pt-5 w-full text-center">
-      <span class="inline-block w-2 h-2 bg-emerald-400 rounded-full mr-1.5 align-middle animate-pulse"></span> online · Nefs Hub
+      <span class="inline-block w-2 h-2 bg-emerald-400 rounded-full mr-1.5 align-middle"></span> online · Nefs Hub
       <span class="mx-2">•</span> © 2025 · clean grid
     </div>
   </div>
-
-  <!-- AUDIO ELEMENT (sembunyi) -->
-  <audio id="https://cdn.discordapp.com/attachments/1455029046638415998/1459684406842097793/fc2183da227dc1b688884ae065f96478.mp3?ex=69f5318a&is=69f3e00a&hm=f3915b7a1f0020210d5b0c763bbdf29885b1af5fc887fd544b7dfc77dc403766&" loop preload="none">
-    <!-- GANTI src dengan link musik pilihanmu (contoh: https://... .mp3) -->
-  </audio>
 
   <script>
     (function(){
       "use strict";
 
-      // =============== PARTIKEL BINTANG JATUH (CANVAS) ===============
-      const canvas = document.getElementById('starCanvas');
-      const ctx = canvas.getContext('2d');
-      let width, height;
-      const stars = [];
-
-      function initStars(count = 80) {
-        stars.length = 0;
-        for (let i = 0; i < count; i++) {
-          stars.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            radius: Math.random() * 2 + 0.5,
-            speed: Math.random() * 0.5 + 0.2,
-            opacity: Math.random() * 0.8 + 0.2,
-            angle: Math.random() * Math.PI * 2,
-            velocityX: (Math.random() - 0.5) * 0.3,
-            velocityY: (Math.random() - 0.5) * 0.3,
-          });
-        }
-      }
-
-      function resizeCanvas() {
-        width = window.innerWidth;
-        height = window.innerHeight;
-        canvas.width = width;
-        canvas.height = height;
-        initStars(80);
-      }
-
-      function drawStars() {
-        ctx.clearRect(0, 0, width, height);
-        for (let s of stars) {
-          ctx.beginPath();
-          ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${s.opacity})`;
-          ctx.fill();
-          // kadang beri efek ekor
-          ctx.beginPath();
-          ctx.arc(s.x - s.velocityX*2, s.y - s.velocityY*2, s.radius*0.7, 0, Math.PI*2);
-          ctx.fillStyle = `rgba(167, 139, 250, ${s.opacity*0.5})`;
-          ctx.fill();
-
-          // perbarui posisi
-          s.x += s.velocityX;
-          s.y += s.velocityY;
-          // bungkus posisi jika keluar layar
-          if (s.x < 0) s.x = width;
-          if (s.x > width) s.x = 0;
-          if (s.y < 0) s.y = height;
-          if (s.y > height) s.y = 0;
-        }
-        requestAnimationFrame(drawStars);
-      }
-
-      window.addEventListener('resize', resizeCanvas);
-      resizeCanvas();
-      drawStars();
-
-      // =============== DATA ITEMS ===============
+      // ---------- DATA ITEMS (dengan fitur enabled true/false) ----------
       const items = [
-        { category: 'gtps', title: 'Eldoria WhatsApp', url: 'https://chat.whatsapp.com/B90D9btBCkY0wvOCypqI5J?mode=gi_t', iconType: 'img', iconSrc: 'https://i.ibb.co.com/PGCKChZn/IMG-20250822-WA0081.jpg' },
-        { category: 'gtps', title: 'All Host Eldoria', url: 'https://eldoriaps.vercel.app/', iconType: 'img', iconSrc: 'https://i.ibb.co.com/PGCKChZn/IMG-20250822-WA0081.jpg', enabled: true },
-        { category: 'gtps', title: 'Eldoria APK', url: 'https://pixeldrain.com/u/oPTKGVau', iconType: 'img', iconSrc: 'https://i.ibb.co.com/PGCKChZn/IMG-20250822-WA0081.jpg', enabled: true },
-        { category: 'gtps', title: 'Discord Eldoria', url: 'https://discord.gg/8hqTpbJxPF', iconType: 'img', iconSrc: 'https://i.ibb.co.com/PGCKChZn/IMG-20250822-WA0081.jpg', enabled: true },
-        { category: 'nefs', title: 'Nefs Community', url: 'https://chat.whatsapp.com/GTLfZoXYFgY501NnLeiWSC?mode=gi_t', iconType: 'fa', iconClass: 'fab fa-whatsapp' },
-        { category: 'nefs', title: 'Discord Group', url: 'https://discord.gg/FYhKqEvhHh', iconType: 'fa', iconClass: 'fab fa-discord' },
-        { category: 'nefs', title: 'Digital Store', url: 'https://nefs-storee.vercel.app/', iconType: 'img', iconSrc: 'https://i.ibb.co.com/nsJpKmJn/file-00000000bce071fab85724add9068e8e.png' },
-        { category: 'nefs', title: 'Jasa Design', url: 'https://www.instagram.com/seventyone_studios?igsh=eXQ3NGk1Zng0cHlx', iconType: 'img', iconSrc: 'https://i.ibb.co.com/jkkpYSP0/IMG-20260501-063821-548.jpg' }, // GANTI iconSrc dengan URL i.ibb
-        { category: 'host', title: 'Hosts GO', url: 'https://sfile.mobi/8PTcz8qwvYn', iconType: 'img', iconSrc: 'https://i.ibb.co.com/N2nMwq6H/23ec4ca387202bc058ee85e45ac00907-icon-transfer-2026-04-13-214033.png' },
-        { category: 'host', title: 'PowerTunnel', url: 'https://sfile.mobi/7SNc2kJhLyj', iconType: 'img', iconSrc: 'https://i.ibb.co.com/tPq57wNG/3d9119f632a430bcb59c4bbca01152c0c7b1703e649ff6caa27334f6ca967515-200-transfer-2026-04-13-214215.webp' },
-        { category: 'host', title: 'Virtual Host', url: 'https://sfile.mobi/4xXabY4QEEP', iconType: 'img', iconSrc: 'https://i.ibb.co.com/FkCmRT4Z/6579ce4111f4b-com-github-xfalcon-vhosts-transfer-2026-04-13-214155.png' },
-        { category: 'social', title: 'YouTube', url: 'https://youtube.com/@nefsgtps1', iconType: 'fa', iconClass: 'fab fa-youtube' },
-        { category: 'social', title: 'TikTok', url: 'https://www.tiktok.com/@lynnn7250?_r=1&_t=ZS-95VXToZeyZu', iconType: 'fa', iconClass: 'fab fa-tiktok' },
-        { category: 'social', title: 'Instagram', url: 'https://instagram.com/', iconType: 'fa', iconClass: 'fab fa-instagram' }
+        // GTPS (4 item, termasuk Discord Growhaven)
+        { 
+          category: 'gtps', 
+          title: 'Eldoria WhatsApp', 
+          url: 'https://chat.whatsapp.com/B90D9btBCkY0wvOCypqI5J?mode=gi_t',
+          iconType: 'img',
+          iconSrc: 'https://i.ibb.co.com/PGCKChZn/IMG-20250822-WA0081.jpg',
+        },
+        { 
+          category: 'gtps', 
+          title: 'All Host Eldoria', 
+          url: 'https://eldoriaps.vercel.app/',
+          iconType: 'img',
+          iconSrc: 'https://i.ibb.co.com/PGCKChZn/IMG-20250822-WA0081.jpg',
+          enabled: true,    // <-- UBAH JADI false UNTUK MENYEMBUNYIKAN
+        },
+        { 
+          category: 'gtps', 
+          title: 'Eldoria APK', 
+          url: 'https://pixeldrain.com/u/oPTKGVau',
+          iconType: 'img',
+          iconSrc: 'https://i.ibb.co.com/PGCKChZn/IMG-20250822-WA0081.jpg',
+          enabled: true,    // <-- UBAH JADI false UNTUK MENYEMBUNYIKAN
+        },
+        { 
+          category: 'gtps', 
+          title: 'Discord Eldoria',    // Logo pakai gambar, bukan ikon
+          url: 'https://discord.gg/8hqTpbJxPF',   // Ganti dengan link discord Growhaven asli
+          iconType: 'img',                // <-- SEKARANG PAKAI GAMBAR
+          iconSrc: 'https://i.ibb.co.com/PGCKChZn/IMG-20250822-WA0081.jpg',  // GANTI dengan URL logo Discord kamu
+          enabled: true,                  // bisa diatur false jika ingin disembunyikan
+        },
+        
+        // NEFS STORE & COMMUNITY (4 item – Jasa Design ditambahkan di samping Digital Store)
+        { 
+          category: 'nefs', 
+          title: 'Nefs Community', 
+          url: 'https://chat.whatsapp.com/GTLfZoXYFgY501NnLeiWSC?mode=gi_t',
+          iconType: 'fa',
+          iconClass: 'fab fa-whatsapp',
+        },
+        { 
+          category: 'nefs', 
+          title: 'Discord Group', 
+          url: 'https://discord.gg/FYhKqEvhHh',
+          iconType: 'fa',
+          iconClass: 'fab fa-discord',
+        },
+        { 
+          category: 'nefs', 
+          title: 'Digital Store', 
+          url: 'https://nefs-storee.vercel.app/',
+          iconType: 'img',
+          iconSrc: 'https://i.ibb.co.com/nsJpKmJn/file-00000000bce071fab85724add9068e8e.png',
+        },
+        { 
+          category: 'nefs', 
+          title: 'Jasa Design', 
+          url: 'https://www.instagram.com/seventyone_studios?igsh=eXQ3NGk1Zng0cHlx',
+          iconType: 'img',
+          iconSrc: 'https://i.ibb.co.com/jkkpYSP0/IMG-20260501-063821-548.jpg',  // GANTI dengan URL gambar dari i.ibb.co
+          enabled: true,
+        },
+        
+        // APLIKASI HOST (3)
+        { 
+          category: 'host', 
+          title: 'Hosts GO', 
+          url: 'https://sfile.mobi/8PTcz8qwvYn',
+          iconType: 'img',
+          iconSrc: 'https://i.ibb.co.com/N2nMwq6H/23ec4ca387202bc058ee85e45ac00907-icon-transfer-2026-04-13-214033.png',
+        },
+        { 
+          category: 'host', 
+          title: 'PowerTunnel', 
+          url: 'https://sfile.mobi/7SNc2kJhLyj',
+          iconType: 'img',
+          iconSrc: 'https://i.ibb.co.com/tPq57wNG/3d9119f632a430bcb59c4bbca01152c0c7b1703e649ff6caa27334f6ca967515-200-transfer-2026-04-13-214215.webp',
+        },
+        { 
+          category: 'host', 
+          title: 'Virtual Host', 
+          url: 'https://sfile.mobi/4xXabY4QEEP',
+          iconType: 'img',
+          iconSrc: 'https://i.ibb.co.com/FkCmRT4Z/6579ce4111f4b-com-github-xfalcon-vhosts-transfer-2026-04-13-214155.png',
+        },
+        
+        // SOCIAL MEDIA (3)
+        { 
+          category: 'social', 
+          title: 'YouTube', 
+          url: 'https://youtube.com/@nefsgtps1',
+          iconType: 'fa',
+          iconClass: 'fab fa-youtube',
+        },
+        { 
+          category: 'social', 
+          title: 'TikTok', 
+          url: 'https://www.tiktok.com/@lynnn7250?_r=1&_t=ZS-95VXToZeyZu',
+          iconType: 'fa',
+          iconClass: 'fab fa-tiktok',
+        },
+        { 
+          category: 'social', 
+          title: 'Instagram', 
+          url: 'https://instagram.com/',
+          iconType: 'fa',
+          iconClass: 'fab fa-instagram',
+        }
       ];
 
+      // ---------- DOM elements ----------
       const grid = document.getElementById('gridContainer');
       const tabs = document.querySelectorAll('[data-cat]');
+      
       let activeCategory = 'gtps';
 
+      // ---------- RENDER (dengan filter enabled !== false) ----------
       function renderGrid(category) {
-        const filtered = items.filter(item => item.category === category && item.enabled !== false);
+        const filtered = items.filter(item => 
+          item.category === category && item.enabled !== false
+        );
+        
         let html = '';
         filtered.forEach(item => {
           let iconMarkup = '';
@@ -317,6 +237,7 @@
           } else {
             iconMarkup = `<i class="${item.iconClass} text-4xl md:text-5xl"></i>`;
           }
+          
           html += `
             <a href="${item.url}" target="_blank" rel="noopener noreferrer" 
                class="hub-card rounded-2xl p-4 flex flex-col items-center text-center no-underline text-white group">
@@ -329,21 +250,25 @@
             </a>
           `;
         });
-        grid.style.opacity = '0.5';
+        
+        grid.style.opacity = '0.6';
         setTimeout(() => {
           grid.innerHTML = html;
           grid.style.opacity = '1';
         }, 30);
       }
 
+      // ---------- TAB SWITCHING ----------
       function setActiveTab(category) {
         activeCategory = category;
         tabs.forEach(btn => {
-          btn.classList.toggle('active', btn.getAttribute('data-cat') === category);
+          const cat = btn.getAttribute('data-cat');
+          btn.classList.toggle('active', cat === category);
         });
         renderGrid(category);
       }
 
+      // ---------- EVENT LISTENERS ----------
       tabs.forEach(btn => {
         btn.addEventListener('click', (e) => {
           const cat = btn.getAttribute('data-cat');
@@ -354,72 +279,18 @@
         });
       });
 
+      // ---------- INIT ----------
       document.querySelector('[data-cat="gtps"]').classList.add('active');
       renderGrid('gtps');
-
-      // =============== MUSIK LATAR ===============
-      const musicToggle = document.getElementById('music-toggle');
-      const bgMusic = document.getElementById('bg-music');
-      let isPlaying = false;
-
-      // Cek apakah ada source yang diset (user harus mengganti di tag <audio>)
-      function hasMusicSource() {
-        return bgMusic.querySelector('source')?.getAttribute('src') || bgMusic.getAttribute('src') || '';
-      }
-
-      musicToggle.addEventListener('click', () => {
-        // Jika belum ada URL musik, tampilkan petunjuk
-        if (!bgMusic.src || bgMusic.src === window.location.href || bgMusic.src === '') {
-          alert('🎵 Silakan tambahkan URL musik di tag <audio> (baris  <audio id="bg-music" ... src="...">).\nKamu bisa upload lagu ke i.bbc atau gunakan link mp3 langsung.');
-          return;
-        }
-
-        if (isPlaying) {
-          bgMusic.pause();
-          musicToggle.classList.remove('playing');
-          musicToggle.innerHTML = '<i class="fas fa-music"></i>';
-        } else {
-          bgMusic.play().catch(() => {
-            alert('Gagal memutar musik. Pastikan URL valid dan mendukung CORS.');
-          });
-          musicToggle.classList.add('playing');
-          musicToggle.innerHTML = '<i class="fas fa-music"></i>';
-        }
-        isPlaying = !isPlaying;
-      });
-
-      // Otomatis hapus class playing jika lagu habis (tapi loop)
-      bgMusic.addEventListener('pause', () => {
-        if (isPlaying) {
-          musicToggle.classList.remove('playing');
-          musicToggle.innerHTML = '<i class="fas fa-music"></i>';
-          isPlaying = false;
-        }
-      });
-
-      bgMusic.addEventListener('play', () => {
-        musicToggle.classList.add('playing');
-        musicToggle.innerHTML = '<i class="fas fa-music"></i>';
-      });
-
-      // Jika user ingin auto-play setelah interaksi pertama (opsional)
-      document.body.addEventListener('click', function initPlay() {
-        if (!hasMusicSource()) return;
-        // bisa diaktifkan jika ingin musik mulai setelah klik pertama
-        // if (!isPlaying) { musicToggle.click(); }
-      }, { once: true });
 
     })();
   </script>
   <!-- 
-    ============== PANDUAN KUSTOMISASI ==============
-    1. Musik latar: Cari tag <audio id="bg-music"> di atas.
-       Ganti bagian src="" dengan link file .mp3 (contoh: src="https://...musikmu.mp3")
-    2. Ikon "Jasa Design": Cari item 'Jasa Design' di array items, ubah iconSrc dengan URL gambar dari i.ibb.co
-    3. Warna / efek: Semua variabel animasi dan glow bisa disesuaikan di bagian <style>
-    4. Untuk menyembunyikan item, ubah enabled: true menjadi false
-    5. Pastikan file gambar dan musik online agar tidak error
-    =================================================
+    CATATAN PENTING:
+    - "All Host Growthaven" & "Growthaven APK": ubah enabled: true menjadi false untuk menyembunyikan.
+    - "Discord Growhaven" sekarang pakai gambar (iconType: 'img'). Ganti URL iconSrc dengan logo Discord milikmu.
+    - "Jasa Design" sudah ditambahkan di kategori NEFS STORE & COMMUNITY. Ganti iconSrc dengan URL gambar dari i.ibb.co.
+    - Semua pengaturan dilakukan langsung di dalam kode.
   -->
 </body>
 </html>
