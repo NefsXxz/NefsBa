@@ -106,7 +106,7 @@
 
       // ---------- DATA ITEMS (dengan fitur enabled true/false) ----------
       const items = [
-        // GTPS (4 item, termasuk Discord Growhaven)
+        // GTPS (4 item)
         { 
           category: 'gtps', 
           title: 'Eldoria WhatsApp', 
@@ -120,7 +120,7 @@
           url: 'https://eldoriaps.vercel.app/',
           iconType: 'img',
           iconSrc: 'https://i.ibb.co.com/PGCKChZn/IMG-20250822-WA0081.jpg',
-          enabled: true,    // <-- UBAH JADI false UNTUK MENYEMBUNYIKAN
+          enabled: true,
         },
         { 
           category: 'gtps', 
@@ -128,18 +128,18 @@
           url: 'https://pixeldrain.com/u/FpzwbPK1',
           iconType: 'img',
           iconSrc: 'https://i.ibb.co.com/PGCKChZn/IMG-20250822-WA0081.jpg',
-          enabled: true,    // <-- UBAH JADI false UNTUK MENYEMBUNYIKAN
+          enabled: true,
         },
         { 
           category: 'gtps', 
-          title: 'Discord Eldoria',    // Logo pakai gambar, bukan ikon
-          url: 'https://discord.gg/8hqTpbJxPF',   // Ganti dengan link discord Growhaven asli
-          iconType: 'img',                // <-- SEKARANG PAKAI GAMBAR
-          iconSrc: 'https://i.ibb.co.com/PGCKChZn/IMG-20250822-WA0081.jpg',  // GANTI dengan URL logo Discord kamu
-          enabled: true,                  // bisa diatur false jika ingin disembunyikan
+          title: 'Discord Eldoria',    
+          url: 'https://discord.gg/8hqTpbJxPF',   
+          iconType: 'img',                
+          iconSrc: 'https://i.ibb.co.com/PGCKChZn/IMG-20250822-WA0081.jpg', 
+          enabled: true,
         },
         
-        // NEFS STORE & COMMUNITY (4 item – Jasa Design ditambahkan di samping Digital Store)
+        // NEFS STORE & COMMUNITY (5 item - sekarang ada buy/sell ba profile)
         { 
           category: 'nefs', 
           title: 'Nefs Community', 
@@ -156,17 +156,26 @@
         },
         { 
           category: 'nefs', 
-          title: 'Digital Store', 
+          title: 'Nefs Store', 
           url: 'https://nefs-storee.vercel.app/',
           iconType: 'img',
           iconSrc: 'https://i.ibb.co.com/nsJpKmJn/file-00000000bce071fab85724add9068e8e.png',
         },
         { 
           category: 'nefs', 
-          title: 'Jasa Design', 
+          title: 'Jasa Design chester', 
           url: 'https://www.instagram.com/seventyone_studios?igsh=eXQ3NGk1Zng0cHlx',
           iconType: 'img',
-          iconSrc: 'https://i.ibb.co.com/jkkpYSP0/IMG-20260501-063821-548.jpg',  // GANTI dengan URL gambar dari i.ibb.co
+          iconSrc: 'https://i.ibb.co.com/jkkpYSP0/IMG-20260501-063821-548.jpg',
+          enabled: true,
+        },
+        // ITEM BARU: buy/sell ba profile (Discord)
+        { 
+          category: 'nefs', 
+          title: 'buy/sell ba gtps', 
+          url: 'https://discord.gg/vCTasArYxM',
+          iconType: 'img',
+          iconSrc: 'https://i.ibb.co.com/TxNKXrns/1779591020659.png',
           enabled: true,
         },
         
@@ -285,12 +294,5 @@
 
     })();
   </script>
-  <!-- 
-    CATATAN PENTING:
-    - "All Host Growthaven" & "Growthaven APK": ubah enabled: true menjadi false untuk menyembunyikan.
-    - "Discord Growhaven" sekarang pakai gambar (iconType: 'img'). Ganti URL iconSrc dengan logo Discord milikmu.
-    - "Jasa Design" sudah ditambahkan di kategori NEFS STORE & COMMUNITY. Ganti iconSrc dengan URL gambar dari i.ibb.co.
-    - Semua pengaturan dilakukan langsung di dalam kode.
-  -->
 </body>
 </html>
