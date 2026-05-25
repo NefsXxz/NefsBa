@@ -104,22 +104,23 @@
     (function(){
       "use strict";
 
-      // ---------- DATA ITEMS (dengan fitur enabled true/false) ----------
+      // ---------- DATA ITEMS (dengan fitur enabled true/false untuk semua item, terutama GTPS) ----------
       const items = [
-        // GTPS (4 item)
+        // ==================== GTPS (semua item sudah punya properti enabled) ====================
         { 
           category: 'gtps', 
           title: 'Eldoria WhatsApp', 
           url: 'https://chat.whatsapp.com/B90D9btBCkY0wvOCypqI5J?mode=gi_t',
           iconType: 'img',
-          iconSrc: 'https://i.ibb.co.com/PGCKChZn/IMG-20250822-WA0081.jpg',
+          iconSrc: 'https://i.ibb.co.com/RkCJJYKC/file-00000000867471fdb8c254e7a1bddb3e.png',
+          enabled: false,   // Ubah ke false untuk menyembunyikan
         },
         { 
           category: 'gtps', 
-          title: 'All Host Eldoria', 
-          url: 'https://eldoriaps.vercel.app/',
+          title: 'All Host Neotopia', 
+          url: 'https://dash.gtps.cloud/how-to-play/4735',
           iconType: 'img',
-          iconSrc: 'https://i.ibb.co.com/PGCKChZn/IMG-20250822-WA0081.jpg',
+          iconSrc: 'https://i.ibb.co.com/RkCJJYKC/file-00000000867471fdb8c254e7a1bddb3e.png',
           enabled: true,
         },
         { 
@@ -128,18 +129,18 @@
           url: 'https://pixeldrain.com/u/FpzwbPK1',
           iconType: 'img',
           iconSrc: 'https://i.ibb.co.com/PGCKChZn/IMG-20250822-WA0081.jpg',
-          enabled: true,
+          enabled: false,
         },
         { 
           category: 'gtps', 
-          title: 'Discord Eldoria',    
-          url: 'https://discord.gg/8hqTpbJxPF',   
+          title: 'Discord Neotopia',    
+          url: 'https://discord.gg/neotopiaps',   
           iconType: 'img',                
-          iconSrc: 'https://i.ibb.co.com/PGCKChZn/IMG-20250822-WA0081.jpg', 
+          iconSrc: 'https://i.ibb.co.com/RkCJJYKC/file-00000000867471fdb8c254e7a1bddb3e.png', 
           enabled: true,
         },
         
-        // NEFS STORE & COMMUNITY (5 item - sekarang ada buy/sell ba profile)
+        // ==================== NEFS STORE & COMMUNITY ====================
         { 
           category: 'nefs', 
           title: 'Nefs Community', 
@@ -156,30 +157,29 @@
         },
         { 
           category: 'nefs', 
-          title: 'Nefs Store', 
+          title: 'Digital Store', 
           url: 'https://nefs-storee.vercel.app/',
           iconType: 'img',
           iconSrc: 'https://i.ibb.co.com/nsJpKmJn/file-00000000bce071fab85724add9068e8e.png',
         },
         { 
           category: 'nefs', 
-          title: 'Jasa Design chester', 
+          title: 'Jasa Design', 
           url: 'https://www.instagram.com/seventyone_studios?igsh=eXQ3NGk1Zng0cHlx',
           iconType: 'img',
           iconSrc: 'https://i.ibb.co.com/jkkpYSP0/IMG-20260501-063821-548.jpg',
           enabled: true,
         },
-        // ITEM BARU: buy/sell ba profile (Discord)
         { 
           category: 'nefs', 
-          title: 'buy/sell ba gtps', 
+          title: 'buy/sell ba profile', 
           url: 'https://discord.gg/vCTasArYxM',
           iconType: 'img',
           iconSrc: 'https://i.ibb.co.com/TxNKXrns/1779591020659.png',
           enabled: true,
         },
         
-        // APLIKASI HOST (3)
+        // ==================== APLIKASI HOST ====================
         { 
           category: 'host', 
           title: 'Hosts GO', 
@@ -202,7 +202,7 @@
           iconSrc: 'https://i.ibb.co.com/FkCmRT4Z/6579ce4111f4b-com-github-xfalcon-vhosts-transfer-2026-04-13-214155.png',
         },
         
-        // SOCIAL MEDIA (3)
+        // ==================== SOCIAL MEDIA ====================
         { 
           category: 'social', 
           title: 'YouTube', 
@@ -232,7 +232,7 @@
       
       let activeCategory = 'gtps';
 
-      // ---------- RENDER (dengan filter enabled !== false) ----------
+      // ---------- RENDER (filter enabled !== false) ----------
       function renderGrid(category) {
         const filtered = items.filter(item => 
           item.category === category && item.enabled !== false
@@ -294,5 +294,12 @@
 
     })();
   </script>
+  <!-- 
+    CATATAN PENTING:
+    - Semua item di kategori GTPS sekarang memiliki properti "enabled: true/false".
+    - Ubah nilai enabled menjadi false untuk menyembunyikan item, true untuk menampilkan.
+    - Contoh: "Eldoria WhatsApp" jika ingin disembunyikan, ubah enabled: false
+    - Fitur ini juga bisa diterapkan di kategori lain dengan menambahkan properti enabled pada item tersebut.
+  -->
 </body>
 </html>
